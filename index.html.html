@@ -12,23 +12,26 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid rgba(255,255,255,.07)}
-.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo-mark{background:#B8660C;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px}
-.logo-name{font-size:18px;font-weight:600;color:#fff}
+.logo-name{font-size:18px;font-weight:600;color:#fff;font-family:'DM Sans',sans-serif}
 .logo-sub{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;font-family:'DM Mono',monospace}
 .nav-links{display:flex;gap:10px}
-.nbtn{font-size:13px;padding:8px 18px;border-radius:8px;cursor:pointer;font-weight:500;border:none}
+.nbtn{font-size:13px;padding:8px 18px;border-radius:8px;cursor:pointer;font-weight:500;border:none;text-decoration:none;display:inline-block;transition:all .15s}
 .n-in{background:transparent;border:1px solid rgba(255,255,255,.18)!important;color:rgba(255,255,255,.75)}
+.n-in:hover{background:rgba(255,255,255,.08)}
 .n-start{background:#B8660C;color:#fff}
+.n-start:hover{background:#9e5a0a}
 .hero{padding:80px 48px 90px;text-align:center}
 .eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(184,102,12,.15);border:1px solid rgba(184,102,12,.28);color:#E8820A;font-size:11px;font-weight:500;padding:5px 14px;border-radius:99px;margin-bottom:26px}
 .hero h1{font-size:clamp(36px,5vw,54px);font-weight:500;color:#fff;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px;font-family:'DM Serif Display',serif}
 .hero h1 em{color:#E8820A;font-style:italic}
 .hero p{font-size:17px;color:rgba(255,255,255,.52);max-width:540px;margin:0 auto 34px;line-height:1.65}
 .ctas{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.btn-gold{font-size:14px;padding:13px 28px;border-radius:9px;cursor:pointer;font-weight:600;background:#B8660C;color:#fff;border:none;transition:background .15s}
+.btn-gold{font-size:14px;padding:13px 28px;border-radius:9px;cursor:pointer;font-weight:600;background:#B8660C;color:#fff;border:none;transition:background .15s;text-decoration:none;display:inline-block}
 .btn-gold:hover{background:#9e5a0a}
-.btn-ghost{font-size:13px;padding:11px 22px;border-radius:9px;cursor:pointer;font-weight:500;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.16)}
+.btn-ghost{font-size:13px;padding:11px 22px;border-radius:9px;cursor:pointer;font-weight:500;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.16);text-decoration:none;display:inline-block;transition:all .15s}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
 .hero-note{font-size:11px;color:rgba(255,255,255,.26);margin-bottom:14px}
 .domain-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:11px;padding:5px 14px;border-radius:99px;font-family:'DM Mono',monospace}
 .domain-dot{width:6px;height:6px;border-radius:50%;background:#56A03A;display:inline-block}
@@ -71,9 +74,11 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
 .p-card.ft .p-feat{color:rgba(255,255,255,.55)}
 .p-feat i{font-size:13px;color:#2D6A0A}
 .p-card.ft .p-feat i{color:#E8820A}
-.p-btn{width:100%;padding:11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:18px;border:none}
+.p-btn{width:100%;padding:11px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:18px;border:none;text-decoration:none;display:block;text-align:center;transition:all .15s}
 .p-btn-out{background:rgba(0,0,0,.05);color:#1A1A16;border:1px solid rgba(0,0,0,.12)!important}
+.p-btn-out:hover{background:rgba(0,0,0,.09)}
 .p-btn-gold{background:#B8660C;color:#fff}
+.p-btn-gold:hover{background:#9e5a0a}
 .p-badge{display:inline-block;font-size:9px;font-weight:600;background:#FDF3E7;color:#B8660C;padding:2px 9px;border-radius:99px;margin-bottom:7px}
 .cta-strip{background:#112240;padding:44px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .cta-strip h3{font-size:22px;font-weight:500;color:#fff;font-family:'DM Serif Display',serif}
@@ -82,29 +87,30 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
 .f-copy{font-size:11px;color:rgba(255,255,255,.25)}
 .f-links{display:flex;gap:18px}
 .f-link{font-size:11px;color:rgba(255,255,255,.32);text-decoration:none}
-@media(max-width:640px){.nav,.hero,.stats,.features,.how,.pricing,.cta-strip,.footer{padding-left:20px;padding-right:20px}.stat+.stat{border-left:none;border-top:1px solid rgba(255,255,255,.07)}}
+.f-link:hover{color:rgba(255,255,255,.6)}
+@media(max-width:640px){.nav,.hero,.stats,.features,.how,.pricing,.cta-strip,.footer{padding-left:20px;padding-right:20px}.stat+.stat{border-left:none;border-top:1px solid rgba(255,255,255,.07)}.nav{flex-wrap:wrap;gap:12px}}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <div class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <div class="logo-mark">
       <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true">
         <rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/>
         <path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/>
         <circle cx="19" cy="25" r="3" fill="#B8660C"/>
-        <rect x="17.8" y="25" width="2.4" height="4" rx="1.2" fill="#B8660C"/>
+        <rect x="17.8" y="25" width="2.4" height="3.5" rx="1.2" fill="#B8660C"/>
       </svg>
     </div>
     <div>
       <div class="logo-name">BizSell Assistant</div>
       <div class="logo-sub">bizsellassistant.com</div>
     </div>
-  </div>
+  </a>
   <div class="nav-links">
-    <button class="nbtn n-in">Sign in</button>
-    <button class="nbtn n-start">Start free →</button>
+    <a href="app.html" class="nbtn n-in">Sign in</a>
+    <a href="app.html" class="nbtn n-start">Start free →</a>
   </div>
 </nav>
 
@@ -113,11 +119,11 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
   <h1>Sell your business<br>for <em>maximum value</em></h1>
   <p>BizSell Assistant organizes every document buyers need, calculates your valuation, tracks your pipeline, and generates professional materials — all in one place.</p>
   <div class="ctas">
-    <button class="btn-gold">Start free today →</button>
-    <button class="btn-ghost">See how it works</button>
+    <a href="app.html" class="btn-gold">Start free today →</a>
+    <a href="app.html" class="btn-ghost">Sign in</a>
   </div>
   <div class="hero-note">No credit card required &nbsp;·&nbsp; Free to start &nbsp;·&nbsp; iOS & Android app available</div>
-  <div><div class="domain-tag"><span class="domain-dot"></span>bizsellassistant.com</div></div>
+  <div style="margin-top:14px"><div class="domain-tag"><span class="domain-dot"></span>bizsellassistant.com</div></div>
 </div>
 
 <div class="stats">
@@ -168,7 +174,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
       <div class="p-feat"><i class="ti ti-check"></i>Risk assessment</div>
       <div class="p-feat"><i class="ti ti-check"></i>AI advisor (10/mo)</div>
       <div class="p-feat"><i class="ti ti-check"></i>Cloud data sync</div>
-      <button class="p-btn p-btn-out">Get started free</button>
+      <a href="app.html" class="p-btn p-btn-out">Get started free</a>
     </div>
     <div class="p-card ft">
       <div class="p-badge">Most popular</div>
@@ -181,7 +187,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
       <div class="p-feat"><i class="ti ti-check"></i>AI advisor (unlimited)</div>
       <div class="p-feat"><i class="ti ti-check"></i>Executive summary generator</div>
       <div class="p-feat"><i class="ti ti-check"></i>Priority support</div>
-      <button class="p-btn p-btn-gold">Start Pro free →</button>
+      <a href="app.html" class="p-btn p-btn-gold">Start Pro free →</a>
     </div>
     <div class="p-card">
       <div class="p-tier">Broker</div>
@@ -192,7 +198,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
       <div class="p-feat"><i class="ti ti-check"></i>White-label branding</div>
       <div class="p-feat"><i class="ti ti-check"></i>Client dashboard</div>
       <div class="p-feat"><i class="ti ti-check"></i>Phone support</div>
-      <button class="p-btn p-btn-out">Contact sales</button>
+      <a href="app.html" class="p-btn p-btn-out">Contact sales</a>
     </div>
   </div>
 </div>
@@ -202,7 +208,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
     <h3>Ready to maximize your exit?</h3>
     <p>Join business owners preparing for a successful sale at bizsellassistant.com</p>
   </div>
-  <button class="btn-gold">Start free today →</button>
+  <a href="app.html" class="btn-gold">Start free today →</a>
 </div>
 
 <div class="footer">
@@ -220,7 +226,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
     <a href="#" class="f-link">Privacy Policy</a>
     <a href="#" class="f-link">Terms of Service</a>
     <a href="#" class="f-link">Support</a>
-    <a href="#" class="f-link">Contact</a>
+    <a href="app.html" class="f-link">Sign in</a>
   </div>
 </div>
 
