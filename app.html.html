@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BizSell Assistant — Business Sale Platform</title>
+<meta name="description" content="The complete due diligence toolkit for small business owners preparing to sell.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.6.0/dist/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0C1A2E;--navy2:#112240;--navy3:#1A3358;--gold:#B8660C;--gold2:#E8820A;--blue:#1557A0;--blue2:#2E7DD4;--blue-lt:#E8F2FC;--green:#2D6A0A;--green-lt:#E8F5DF;--red:#A02828;--red-lt:#FCEAEA;--amber:#7A4500;--amber-lt:#FDF1E0;--bg:#FAFAF8;--bg2:#F4F3EF;--bg3:#ECEAE3;--txt:#1A1A16;--txt2:#5C5B55;--txt3:#9B9A93;--bdr:rgba(0,0,0,0.08);--bdr2:rgba(0,0,0,0.14);--r:8px;--rl:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--txt);min-height:100vh}
+h1,h2,h3{font-family:'DM Serif Display',serif}
+button{cursor:pointer;font-family:'DM Sans',sans-serif}
+input,select,textarea{font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 12px;border:1px solid var(--bdr2);border-radius:var(--r);background:white;color:var(--txt);width:100%;outline:none;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue2);box-shadow:0 0 0 3px rgba(46,125,212,.1)}
+textarea{resize:vertical;min-height:60px;line-height:1.5}
+
+/* AUTH */
+.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);background-image:radial-gradient(ellipse at 20% 50%,rgba(24,87,160,.3) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(184,102,12,.2) 0%,transparent 50%)}
+.auth-card{background:white;border-radius:20px;padding:40px 44px;width:100%;max-width:420px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+.auth-logo{display:flex;align-items:center;gap:11px;margin-bottom:28px}
+.auth-logo-mark{width:38px;height:38px;background:var(--gold2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.auth-logo h1{font-size:20px;color:var(--txt)}
+.auth-logo p{font-size:10px;color:var(--txt3);margin-top:1px}
+.auth-card h2{font-size:24px;color:var(--txt);margin-bottom:6px}
+.auth-sub{font-size:13px;color:var(--txt2);margin-bottom:22px;line-height:1.5}
+.auth-field{margin-bottom:14px}
+.auth-field label{display:block;font-size:12px;font-weight:500;color:var(--txt2);margin-bottom:5px}
+.auth-error{background:var(--red-lt);color:var(--red);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:14px}
+.auth-success{background:var(--green-lt);color:var(--green);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:14px}
+.auth-switch{text-align:center;margin-top:18px;font-size:13px;color:var(--txt2)}
+.auth-switch a{color:var(--blue);font-weight:500;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--navy);color:#fff;border:none;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:600;width:100%;margin-top:4px;transition:background .15s}
+.btn-primary:hover{background:var(--navy2)}
+.btn-gold{background:var(--gold);color:#fff;border:none;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:600;width:100%;margin-top:4px;transition:background .15s}
+.btn-gold:hover{background:var(--amber)}
+
+/* APP SHELL */
+.app-shell{display:flex;min-height:100vh}
+.sidebar{width:220px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
+.sb-brand{padding:20px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-logo{display:flex;align-items:center;gap:10px}
+.sb-logo-mark{width:32px;height:32px;background:var(--gold2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-logo h1{font-size:15px;color:white;line-height:1.2}
+.sb-logo p{font-size:9px;color:rgba(255,255,255,.35);margin-top:1px}
+.sb-score{margin:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:11px 12px}
+.sb-score-label{font-size:9px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.sb-score-bar-bg{background:rgba(255,255,255,.1);border-radius:99px;height:4px;margin-bottom:6px;overflow:hidden}
+.sb-score-bar{height:4px;border-radius:99px;background:var(--gold2);transition:width .6s}
+.sb-score-pct{font-size:20px;font-weight:700;color:var(--gold2);font-family:'DM Mono',monospace}
+.sb-score-sub{font-size:9px;color:rgba(255,255,255,.28);margin-top:1px}
+.sb-section{font-size:9px;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.09em;padding:8px 0 2px 16px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 16px;font-size:12px;color:rgba(255,255,255,.48);border-left:2.5px solid transparent;cursor:pointer;transition:all .15s;user-select:none}
+.nav-item:hover{color:rgba(255,255,255,.82);background:rgba(255,255,255,.05)}
+.nav-item.active{color:white;border-left-color:var(--gold2);background:rgba(255,255,255,.07);font-weight:600}
+.nav-item i{font-size:16px;flex-shrink:0}
+.nav-badge{margin-left:auto;font-size:9px;background:rgba(232,130,10,.18);color:var(--gold2);border-radius:99px;padding:1px 7px;font-weight:600}
+.sb-user{margin-top:auto;padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
+.sb-avatar{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
+.sb-user-name{font-size:11px;font-weight:500;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.sb-signout{font-size:11px;color:rgba(255,255,255,.3);background:transparent;border:none;cursor:pointer;padding:2px 4px}
+.sb-signout:hover{color:rgba(255,255,255,.6)}
+.main-content{margin-left:220px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{padding:14px 24px 12px;background:var(--bg);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.topbar-title{font-size:18px;color:var(--txt)}
+.topbar-sub{font-size:12px;color:var(--txt3);margin-top:2px}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.save-indicator{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt3)}
+.save-dot{width:7px;height:7px;border-radius:50%;background:#56A03A;transition:background .3s}
+.save-dot.saving{background:var(--gold2);animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.page-body{padding:22px 24px 32px;flex:1}
+.sec{display:none}.sec.active{display:block}
+
+/* COMPONENTS */
+.card{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-hd h3{font-size:13px;font-weight:600;color:var(--txt)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.kpi{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.kpi-label{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.kpi-value{font-size:22px;font-weight:700;color:var(--txt);font-family:'DM Mono',monospace}
+.kpi-sub{font-size:10px;color:var(--txt3);margin-top:3px}
+.kpi.highlight{background:var(--navy);border-color:var(--navy3)}
+.kpi.highlight .kpi-label{color:rgba(255,255,255,.38)}
+.kpi.highlight .kpi-value{color:var(--gold2)}
+.kpi.highlight .kpi-sub{color:rgba(255,255,255,.28)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:500;transition:all .15s;border:1px solid transparent;white-space:nowrap;cursor:pointer}
+.btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-navy:hover{background:var(--navy2)}
+.btn-outline{background:white;color:var(--txt);border-color:var(--bdr2)}
+.btn-outline:hover{background:var(--bg2)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.strip{background:var(--navy);border-radius:var(--r);padding:11px 14px;display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+.strip i{color:var(--gold2);font-size:17px;flex-shrink:0;margin-top:1px}
+.strip p{font-size:12px;color:rgba(255,255,255,.62);line-height:1.5}
+.strip strong{color:var(--gold2)}
+
+/* CHECKLIST */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.cat-card{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:13px 15px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.cat-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cat-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cat-name{font-size:12px;font-weight:600;color:var(--txt)}
+.cat-count{font-size:9px;color:var(--txt3);margin-left:auto}
+.cat-bar{background:var(--bg2);border-radius:99px;height:3px;margin-bottom:8px;overflow:hidden}
+.cat-bar-fill{height:3px;border-radius:99px;transition:width .4s}
+.chk-row{display:flex;align-items:flex-start;gap:7px;padding:4px 6px;margin:0 -6px;border-radius:5px;cursor:pointer}
+.chk-row:hover{background:var(--bg2)}
+.chk-row input[type=checkbox]{width:auto;padding:0;margin-top:2px;accent-color:var(--blue);flex-shrink:0}
+.chk-row label{font-size:12px;color:var(--txt);cursor:pointer;line-height:1.4;flex:1}
+.chk-row.done label{text-decoration:line-through;color:var(--txt3)}
+
+/* VALUATION */
+.val-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.ig{display:flex;flex-direction:column;gap:4px}
+.ig label{font-size:11px;font-weight:500;color:var(--txt2)}
+.val-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.method-card{border-radius:var(--rl);padding:16px;border:1px solid var(--bdr);background:white;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.method-card.featured{background:var(--navy);border-color:var(--navy3)}
+.method-card .mc-label{font-size:9px;color:var(--txt3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.method-card.featured .mc-label{color:rgba(255,255,255,.38)}
+.method-card .mc-value{font-size:24px;font-weight:700;color:var(--txt);font-family:'DM Mono',monospace}
+.method-card.featured .mc-value{color:var(--gold2)}
+.method-card .mc-sub{font-size:10px;color:var(--txt3);margin-top:4px}
+.method-card.featured .mc-sub{color:rgba(255,255,255,.28)}
+.method-card .mc-tag{display:inline-block;font-size:9px;padding:2px 8px;border-radius:99px;margin-top:8px;background:var(--amber-lt);color:var(--amber);font-weight:600}
+.method-card.featured .mc-tag{background:rgba(232,130,10,.18);color:var(--gold2)}
+.ind-note{background:var(--green-lt);border-radius:var(--r);padding:11px 14px;font-size:12px;color:var(--green);margin-bottom:14px;line-height:1.6}
+.val-note-box{background:var(--bg2);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--txt2);line-height:1.7}
+
+/* RISKS */
+.risk-item{display:flex;align-items:flex-start;gap:12px;padding:13px;border:1px solid var(--bdr);border-radius:var(--rl);margin-bottom:9px;background:white;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.risk-sev{width:3px;border-radius:99px;align-self:stretch;flex-shrink:0}
+.risk-body h5{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:3px}
+.risk-body p{font-size:12px;color:var(--txt2);line-height:1.55}
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:99px;margin-bottom:5px}
+.badge-red{background:var(--red-lt);color:var(--red)}
+.badge-amber{background:var(--amber-lt);color:var(--amber)}
+.badge-blue{background:var(--blue-lt);color:var(--blue)}
+
+/* BUYERS */
+.buyer-form{background:var(--bg2);border-radius:var(--rl);padding:15px;margin-bottom:16px;border:1px solid var(--bdr)}
+.buyer-form h4{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:11px}
+.buyer-form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:11px}
+.buyer-card{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:12px 14px;display:flex;align-items:center;gap:11px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.buyer-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.buyer-card h5{font-size:13px;font-weight:600;color:var(--txt)}
+.buyer-card p{font-size:11px;color:var(--txt2);margin-top:1px}
+.buyer-stage{margin-left:auto;font-size:10px;padding:3px 9px;border-radius:99px;font-weight:600;white-space:nowrap}
+.buyer-del{margin-left:6px;font-size:11px;padding:3px 8px;border-radius:99px;cursor:pointer;border:1px solid var(--bdr2);background:transparent;color:var(--txt3)}
+.buyer-del:hover{color:var(--red);border-color:#f0c0c0;background:var(--red-lt)}
+
+/* CHAT */
+.chat-wrap{display:flex;flex-direction:column;height:500px}
+.chat-msgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:6px}
+.msg{display:flex;gap:9px;align-items:flex-start}
+.msg.user{flex-direction:row-reverse}
+.msg-bubble{max-width:88%;padding:10px 14px;border-radius:var(--rl);font-size:13px;line-height:1.6}
+.msg.ai .msg-bubble{background:var(--bg2);color:var(--txt);border:1px solid var(--bdr)}
+.msg.user .msg-bubble{background:var(--navy);color:#E8F2FC}
+.msg-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.msg-avatar.ai{background:var(--blue-lt);color:var(--blue)}
+.msg-avatar.user{background:var(--green-lt);color:var(--green)}
+.quick-prompts{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
+.qp{font-size:11px;padding:5px 11px;border-radius:99px;cursor:pointer;border:1px solid var(--bdr);background:white;color:var(--txt2);transition:all .15s}
+.qp:hover{border-color:var(--blue2);color:var(--blue);background:var(--blue-lt)}
+.chat-input-row{display:flex;gap:9px;margin-top:10px}
+.chat-input-row input{flex:1}
+.chat-input-row button{padding:0 20px;font-size:13px;font-weight:600;background:var(--navy);color:var(--gold2);border:none;border-radius:var(--r);white-space:nowrap}
+.chat-input-row button:hover{background:var(--navy2)}
+
+/* SUMMARY */
+.sum-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.strengths-wrap{display:flex;gap:8px;margin-bottom:9px}
+.strengths-wrap input{flex:1}
+.strengths-list{display:flex;flex-wrap:wrap;gap:6px;min-height:28px;margin-bottom:12px}
+.stag{font-size:11px;padding:4px 11px;border-radius:99px;background:var(--green-lt);color:var(--green);cursor:pointer;border:1px solid #b5dfa0;font-weight:500}
+.sum-output{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);padding:16px 18px;font-size:13px;line-height:1.8;color:var(--txt);white-space:pre-wrap;margin-top:13px}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:20px}
+.tl-line{position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--bdr)}
+.tl-item{position:relative;padding:0 0 16px 18px}
+.tl-dot{position:absolute;left:-13px;top:4px;width:10px;height:10px;border-radius:50%;border:2px solid var(--bdr);background:white}
+.tl-dot.active{background:var(--blue2);border-color:var(--blue2)}
+.tl-item h5{font-size:13px;font-weight:600;color:var(--txt)}
+.tl-item p{font-size:12px;color:var(--txt2);margin-top:2px;line-height:1.45}
+.tl-item small{font-size:10px;color:var(--txt3);margin-top:3px;display:block}
+
+/* READINESS BARS */
+.rb-row{margin-bottom:9px}
+.rb-label{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px;color:var(--txt2)}
+.rb-count{color:var(--txt3)}
+.rb-bg{background:var(--bg2);border-radius:99px;height:4px;overflow:hidden}
+.rb-fill{height:4px;border-radius:99px;transition:width .4s}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:var(--gold2);font-size:12px;font-weight:600;padding:9px 16px;border-radius:var(--r);border:1px solid var(--navy3);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* SPIN */
+.spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(184,102,12,.25);border-top-color:var(--gold);border-radius:50%;animation:spinning .7s linear infinite;vertical-align:-2px;margin-right:5px}
+@keyframes spinning{to{transform:rotate(360deg)}}
+
+@media(max-width:768px){.sidebar{display:none}.main-content{margin-left:0}.kpis{grid-template-columns:1fr 1fr}.two-col,.cat-grid,.val-inputs,.sum-form,.val-methods{grid-template-columns:1fr}.buyer-form-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- AUTH PAGES -->
+<div id="auth-page">
+  <!-- SIGN IN -->
+  <div id="signin-page" class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="auth-logo-mark">
+          <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/><rect x="17.8" y="25" width="2.4" height="3.5" rx="1.2" fill="#B8660C"/></svg>
+        </div>
+        <div><h1>BizSell Assistant</h1><p>bizsellassistant.com</p></div>
+      </div>
+      <h2>Welcome back</h2>
+      <p class="auth-sub">Sign in to your deal workspace</p>
+      <div id="signin-error" class="auth-error" style="display:none"></div>
+      <div class="auth-field"><label>Email address</label><input type="email" id="signin-email" placeholder="you@company.com"></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="signin-password" placeholder="••••••••"></div>
+      <button class="btn-primary" onclick="handleSignIn()">Sign in →</button>
+      <div class="auth-switch">Don't have an account? <a onclick="showPage('signup')">Create one free</a></div>
+    </div>
+  </div>
+
+  <!-- SIGN UP -->
+  <div id="signup-page" class="auth-page" style="display:none">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="auth-logo-mark">
+          <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/><rect x="17.8" y="25" width="2.4" height="3.5" rx="1.2" fill="#B8660C"/></svg>
+        </div>
+        <div><h1>BizSell Assistant</h1><p>bizsellassistant.com</p></div>
+      </div>
+      <h2>Create your account</h2>
+      <p class="auth-sub">Start organizing your business sale for free — no credit card required.</p>
+      <div id="signup-error" class="auth-error" style="display:none"></div>
+      <div id="signup-success" class="auth-success" style="display:none">Account created! Please check your email to verify your account, then sign in.</div>
+      <div class="auth-field"><label>Full name</label><input type="text" id="signup-name" placeholder="Jane Smith"></div>
+      <div class="auth-field"><label>Email address</label><input type="email" id="signup-email" placeholder="you@company.com"></div>
+      <div class="auth-field"><label>Password (8+ characters)</label><input type="password" id="signup-password" placeholder="••••••••"></div>
+      <button class="btn-gold" onclick="handleSignUp()">Create free account →</button>
+      <div class="auth-switch">Already have an account? <a onclick="showPage('signin')">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app-page" style="display:none">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sb-brand">
+        <div class="sb-logo">
+          <div class="sb-logo-mark"><svg width="18" height="18" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/></svg></div>
+          <div><h1>BizSell Assistant</h1><p>Business Sale Platform</p></div>
+        </div>
+      </div>
+      <div class="sb-score">
+        <div class="sb-score-label">Sale readiness</div>
+        <div class="sb-score-bar-bg"><div class="sb-score-bar" id="sc-bar" style="width:0%"></div></div>
+        <div style="display:flex;align-items:baseline;gap:4px"><span class="sb-score-pct" id="sc-pct">0%</span>&nbsp;<span class="sb-score-sub" id="sc-sub">0 of 36 done</span></div>
+      </div>
+      <div class="sb-section">Workspace</div>
+      <div class="nav-item active" onclick="nav('dash')" id="n-dash"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>Dashboard</div>
+      <div class="nav-item" onclick="nav('chk')" id="n-chk"><i class="ti ti-list-check" aria-hidden="true"></i>Checklist<span class="nav-badge" id="nbg">0%</span></div>
+      <div class="nav-item" onclick="nav('val')" id="n-val"><i class="ti ti-calculator" aria-hidden="true"></i>Valuation</div>
+      <div class="sb-section">Data Room</div>
+      <div class="nav-item" onclick="nav('fin')" id="n-fin"><i class="ti ti-report-money" aria-hidden="true"></i>Financials</div>
+      <div class="nav-item" onclick="nav('leg')" id="n-leg"><i class="ti ti-gavel" aria-hidden="true"></i>Legal</div>
+      <div class="nav-item" onclick="nav('ops')" id="n-ops"><i class="ti ti-settings" aria-hidden="true"></i>Operations</div>
+      <div class="sb-section">Deal Tools</div>
+      <div class="nav-item" onclick="nav('rsk')" id="n-rsk"><i class="ti ti-alert-triangle" aria-hidden="true"></i>Risks</div>
+      <div class="nav-item" onclick="nav('buy')" id="n-buy"><i class="ti ti-users" aria-hidden="true"></i>Buyers</div>
+      <div class="nav-item" onclick="nav('adv')" id="n-adv"><i class="ti ti-message-circle" aria-hidden="true"></i>AI Advisor</div>
+      <div class="nav-item" onclick="nav('sum')" id="n-sum"><i class="ti ti-file-description" aria-hidden="true"></i>Exec Summary</div>
+      <div class="sb-user">
+        <div class="sb-avatar" id="sb-avatar">U</div>
+        <span class="sb-user-name" id="sb-username">User</span>
+        <button class="sb-signout" onclick="handleSignOut()" title="Sign out"><i class="ti ti-logout" aria-hidden="true"></i></button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <div class="topbar">
+        <div><div class="topbar-title" id="tt">Dashboard</div><div class="topbar-sub" id="ts">Your sale readiness at a glance</div></div>
+        <div class="topbar-right">
+          <div class="save-indicator"><div class="save-dot" id="save-dot"></div><span id="save-lbl">All saved</span></div>
+          <button class="btn btn-outline btn-sm" onclick="askAdvisor('What are the most important things to do right now to prepare my business for sale?')">Get advice ↗</button>
+          <button class="btn btn-navy btn-sm" onclick="nav('sum')">Generate teaser ↗</button>
+        </div>
+      </div>
+
+      <div class="page-body">
+
+        <!-- DASHBOARD -->
+        <div class="sec active" id="sec-dash">
+          <div class="kpis">
+            <div class="kpi highlight"><div class="kpi-label">Estimated value</div><div class="kpi-value" id="dk-v">—</div><div class="kpi-sub">Based on your inputs</div></div>
+            <div class="kpi"><div class="kpi-label">Readiness</div><div class="kpi-value" id="dk-r">0%</div><div class="kpi-sub">Checklist complete</div></div>
+            <div class="kpi"><div class="kpi-label">Risks flagged</div><div class="kpi-value">7</div><div class="kpi-sub">2 high priority</div></div>
+            <div class="kpi"><div class="kpi-label">Buyers tracked</div><div class="kpi-value" id="dk-b">0</div><div class="kpi-sub">In your pipeline</div></div>
+          </div>
+          <div class="two-col">
+            <div class="card">
+              <div class="card-hd"><h3>Sale timeline</h3><span>Typical process</span></div>
+              <div class="timeline"><div class="tl-line"></div>
+                <div class="tl-item"><div class="tl-dot active"></div><h5>Preparation & valuation</h5><p>Organize documents, get a valuation, set asking price.</p><small>Months 1–2 · You are here</small></div>
+                <div class="tl-item"><div class="tl-dot"></div><h5>Market & find buyers</h5><p>List with a broker, contact strategic buyers. Sign NDAs.</p><small>Months 2–4</small></div>
+                <div class="tl-item"><div class="tl-dot"></div><h5>Due diligence</h5><p>Buyers review your data room. Answer requests promptly.</p><small>Months 4–6</small></div>
+                <div class="tl-item"><div class="tl-dot"></div><h5>LOI & negotiation</h5><p>Letter of intent, negotiate terms, structure, earn-outs.</p><small>Months 5–7</small></div>
+                <div class="tl-item" style="padding-bottom:0"><div class="tl-dot"></div><h5>Close</h5><p>Purchase agreement, escrow, and ownership transfer.</p><small>Months 7–9</small></div>
+              </div>
+            </div>
+            <div class="card"><div class="card-hd"><h3>Readiness by category</h3><span>Complete checklist items</span></div><div id="rb"></div></div>
+          </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="sec" id="sec-chk">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <span style="font-size:12px;color:var(--txt2)" id="chk-lbl">0 of 36 complete · synced to Firebase</span>
+            <button class="btn btn-outline btn-sm" onclick="askAdvisor('Which due diligence documents are most important for buyers?')">Ask advisor ↗</button>
+          </div>
+          <div class="cat-grid" id="chk-grid"></div>
+        </div>
+
+        <!-- VALUATION -->
+        <div class="sec" id="sec-val">
+          <div class="strip"><i class="ti ti-info-circle" aria-hidden="true"></i><p><strong>Tip:</strong> Add back your owner salary, personal vehicle, and one-time costs to get accurate SDE. All inputs save automatically to Firebase.</p></div>
+          <div class="val-inputs">
+            <div class="ig"><label>Annual revenue ($)</label><input type="number" id="v-rev" value="750000" oninput="calcV();scheduleSave()"></div>
+            <div class="ig"><label>Annual net profit ($)</label><input type="number" id="v-pro" value="180000" oninput="calcV();scheduleSave()"></div>
+            <div class="ig"><label>Owner salary add-back ($)</label><input type="number" id="v-add" value="80000" oninput="calcV();scheduleSave()"></div>
+            <div class="ig"><label>Industry</label>
+              <select id="v-ind" onchange="calcV();scheduleSave()">
+                <option value="retail">Retail</option>
+                <option value="service" selected>Service business</option>
+                <option value="saas">SaaS / Tech</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="restaurant">Restaurant / Food</option>
+                <option value="healthcare">Healthcare / Medical</option>
+                <option value="construction">Construction / Trades</option>
+                <option value="equipment">Equipment Rental</option>
+              </select>
+            </div>
+          </div>
+          <div class="ind-note" id="ind-note"></div>
+          <div class="val-methods" id="vms"></div>
+          <div class="val-note-box" id="v-note"></div>
+        </div>
+
+        <!-- FINANCIALS -->
+        <div class="sec" id="sec-fin">
+          <div style="margin-bottom:16px"><div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Core financial statements</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px" id="fg1"></div></div>
+          <div><div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Supporting financial records</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px" id="fg2"></div></div>
+        </div>
+
+        <!-- LEGAL -->
+        <div class="sec" id="sec-leg">
+          <div style="margin-bottom:16px"><div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Corporate structure</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px" id="lg1"></div></div>
+          <div><div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Contracts & compliance</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px" id="lg2"></div></div>
+        </div>
+
+        <!-- OPERATIONS -->
+        <div class="sec" id="sec-ops">
+          <div style="margin-bottom:16px"><div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">People & structure</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px" id="og1"></div></div>
+          <div><div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Assets & customers</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px" id="og2"></div></div>
+        </div>
+
+        <!-- RISKS -->
+        <div class="sec" id="sec-rsk">
+          <div class="strip"><i class="ti ti-shield-check" aria-hidden="true"></i><p><strong>Pro tip:</strong> Each risk resolved before going to market can add 10–20% to your sale price and speed up closing.</p></div>
+          <div id="rsk-list"></div>
+        </div>
+
+        <!-- BUYERS -->
+        <div class="sec" id="sec-buy">
+          <div class="buyer-form">
+            <h4>Add a buyer — saved to Firebase</h4>
+            <div class="buyer-form-grid">
+              <div class="ig"><label>Name / company</label><input type="text" id="b-nm" placeholder="Acme Partners LLC" onkeydown="if(event.key==='Enter')addBuyer()"></div>
+              <div class="ig"><label>Buyer type</label><select id="b-tp"><option>Individual buyer</option><option>Strategic buyer</option><option>Private equity</option><option>Search fund</option></select></div>
+              <div class="ig"><label>Current stage</label><select id="b-st"><option>Initial contact</option><option>Teaser sent</option><option>NDA signed</option><option>Due diligence</option><option>LOI received</option><option>Negotiating</option></select></div>
+            </div>
+            <button class="btn btn-navy btn-sm" onclick="addBuyer()">Add to pipeline</button>
+          </div>
+          <div id="buy-list"></div>
+        </div>
+
+        <!-- AI ADVISOR -->
+        <div class="sec" id="sec-adv">
+          <div class="chat-wrap">
+            <div class="chat-msgs" id="chat-msgs"></div>
+            <div class="quick-prompts" id="qps"></div>
+            <div class="chat-input-row">
+              <input type="text" id="cin" placeholder="Ask anything about selling your business…" onkeydown="if(event.key==='Enter')doChat()">
+              <button onclick="doChat()">Send ↗</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXEC SUMMARY -->
+        <div class="sec" id="sec-sum">
+          <div class="strip"><i class="ti ti-lock" aria-hidden="true"></i><p><strong>Teaser document:</strong> Share before an NDA. Keep financials directional. All fields save automatically to Firebase.</p></div>
+          <div class="sum-form">
+            <div class="ig"><label>Business name</label><input type="text" id="s-nm" placeholder="Acme Equipment LLC" oninput="scheduleSave()"></div>
+            <div class="ig"><label>Industry</label><input type="text" id="s-in" placeholder="Equipment rental" oninput="scheduleSave()"></div>
+            <div class="ig"><label>Annual revenue (approx)</label><input type="text" id="s-rv" placeholder="$1.2M" oninput="scheduleSave()"></div>
+            <div class="ig"><label>Asking price</label><input type="text" id="s-pr" placeholder="$2.5M" oninput="scheduleSave()"></div>
+            <div class="ig"><label>Years in business</label><input type="text" id="s-yr" placeholder="12" oninput="scheduleSave()"></div>
+            <div class="ig"><label>Number of employees</label><input type="text" id="s-em" placeholder="8" oninput="scheduleSave()"></div>
+          </div>
+          <div class="ig" style="margin-bottom:11px"><label>What does the business do?</label><textarea id="s-ds" placeholder="A profitable equipment rental company serving contractors across the metro area since 2012…" oninput="scheduleSave()"></textarea></div>
+          <div class="strengths-wrap">
+            <input type="text" id="s-st" placeholder="Add a key selling point and press Enter" onkeydown="if(event.key==='Enter')addStr()">
+            <button class="btn btn-outline btn-sm" onclick="addStr()">Add strength</button>
+          </div>
+          <div class="strengths-list" id="sl"></div>
+          <div style="display:flex;gap:9px">
+            <button class="btn btn-navy" onclick="genSum()" id="gen-btn">Generate executive summary ↗</button>
+            <button class="btn btn-outline" onclick="askAdvisor('What should I include in a business sale teaser document?')">Get tips ↗</button>
+          </div>
+          <div class="sum-output" id="sum-out" style="display:none"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js'
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where, orderBy } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBu8RgZKHrR3SOhbvFh2p9cCwTCn7ldSJo",
+  authDomain: "bizsellassistant.firebaseapp.com",
+  projectId: "bizsellassistant",
+  storageBucket: "bizsellassistant.firebasestorage.app",
+  messagingSenderId: "494182714385",
+  appId: "1:494182714385:web:54e30eca6d764cfe2af5b0",
+  measurementId: "G-7N1G7JVJFJ"
+}
+
+const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
+const db = getFirestore(app)
+
+// ── AUTH ─────────────────────────────────────────────────────
+window.handleSignIn = async () => {
+  const email = document.getElementById('signin-email').value
+  const password = document.getElementById('signin-password').value
+  const errEl = document.getElementById('signin-error')
+  errEl.style.display = 'none'
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+  } catch(e) {
+    errEl.textContent = e.message.replace('Firebase: ','').replace(/\(auth.*\)/,'')
+    errEl.style.display = 'block'
+  }
+}
+
+window.handleSignUp = async () => {
+  const name = document.getElementById('signup-name').value
+  const email = document.getElementById('signup-email').value
+  const password = document.getElementById('signup-password').value
+  const errEl = document.getElementById('signup-error')
+  const sucEl = document.getElementById('signup-success')
+  errEl.style.display = 'none'
+  sucEl.style.display = 'none'
+  if (!name || !email || !password) { errEl.textContent = 'Please fill in all fields'; errEl.style.display = 'block'; return }
+  if (password.length < 8) { errEl.textContent = 'Password must be at least 8 characters'; errEl.style.display = 'block'; return }
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, password)
+    await setDoc(doc(db, 'users', cred.user.uid), { email, full_name: name, plan: 'free', created_at: new Date().toISOString() })
+    sucEl.style.display = 'block'
+    setTimeout(() => window.showPage('signin'), 3000)
+  } catch(e) {
+    errEl.textContent = e.message.replace('Firebase: ','').replace(/\(auth.*\)/,'')
+    errEl.style.display = 'block'
+  }
+}
+
+window.handleSignOut = async () => {
+  await signOut(auth)
+}
+
+window.showPage = (page) => {
+  document.getElementById('signin-page').style.display = page === 'signin' ? 'flex' : 'none'
+  document.getElementById('signup-page').style.display = page === 'signup' ? 'flex' : 'none'
+}
+
+// ── AUTH STATE ────────────────────────────────────────────────
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    document.getElementById('auth-page').style.display = 'none'
+    document.getElementById('app-page').style.display = 'block'
+    const name = user.displayName || user.email.split('@')[0]
+    document.getElementById('sb-avatar').textContent = name[0].toUpperCase()
+    document.getElementById('sb-username').textContent = name
+    window.currentUser = user
+    await loadAllData(user.uid)
+  } else {
+    document.getElementById('auth-page').style.display = 'block'
+    document.getElementById('app-page').style.display = 'none'
+    document.getElementById('signin-page').style.display = 'flex'
+    document.getElementById('signup-page').style.display = 'none'
+    window.currentUser = null
+  }
+})
+
+// ── FIREBASE DB ───────────────────────────────────────────────
+let saveTimer = null
+window.scheduleSave = () => {
+  setSave('saving')
+  clearTimeout(saveTimer)
+  saveTimer = setTimeout(() => persistAll(), 1000)
+}
+
+async function persistAll() {
+  if (!window.currentUser) return
+  const uid = window.currentUser.uid
+  try {
+    await setDoc(doc(db, 'checklists', uid), { completed_items: [...window.checkedItems], updated_at: new Date().toISOString() })
+    await setDoc(doc(db, 'valuations', uid), {
+      revenue: parseFloat(document.getElementById('v-rev').value)||0,
+      net_profit: parseFloat(document.getElementById('v-pro').value)||0,
+      owner_addback: parseFloat(document.getElementById('v-add').value)||0,
+      industry: document.getElementById('v-ind').value,
+      updated_at: new Date().toISOString()
+    })
+    await setDoc(doc(db, 'summaries', uid), {
+      business_name: document.getElementById('s-nm').value,
+      industry: document.getElementById('s-in').value,
+      revenue: document.getElementById('s-rv').value,
+      asking_price: document.getElementById('s-pr').value,
+      years_in_business: document.getElementById('s-yr').value,
+      employees: document.getElementById('s-em').value,
+      description: document.getElementById('s-ds').value,
+      strengths: window.strengths,
+      updated_at: new Date().toISOString()
+    })
+    setSave('saved')
+    showToast('Progress saved to Firebase')
+  } catch(e) { setSave('error'); console.error(e) }
+}
+
+async function loadAllData(uid) {
+  try {
+    // Load checklist
+    const chkDoc = await getDoc(doc(db, 'checklists', uid))
+    if (chkDoc.exists() && chkDoc.data().completed_items) {
+      window.checkedItems = new Set(chkDoc.data().completed_items)
+      chkDoc.data().completed_items.forEach(id => {
+        const el = document.getElementById(id)
+        if (el) { el.checked = true; document.getElementById('r-'+id).className = 'chk-row done' }
+      })
+      updateProgress()
+    }
+    // Load valuation
+    const valDoc = await getDoc(doc(db, 'valuations', uid))
+    if (valDoc.exists()) {
+      const v = valDoc.data()
+      if (v.revenue) document.getElementById('v-rev').value = v.revenue
+      if (v.net_profit) document.getElementById('v-pro').value = v.net_profit
+      if (v.owner_addback) document.getElementById('v-add').value = v.owner_addback
+      if (v.industry) document.getElementById('v-ind').value = v.industry
+      calcV()
+    }
+    // Load buyers
+    const buysSnap = await getDocs(query(collection(db, 'buyers'), where('user_id','==',uid)))
+    window.buyers = []
+    buysSnap.forEach(d => window.buyers.push({id: d.id, ...d.data()}))
+    renderBuyers()
+    // Load summary
+    const sumDoc = await getDoc(doc(db, 'summaries', uid))
+    if (sumDoc.exists()) {
+      const s = sumDoc.data()
+      if (s.business_name) document.getElementById('s-nm').value = s.business_name
+      if (s.industry) document.getElementById('s-in').value = s.industry
+      if (s.revenue) document.getElementById('s-rv').value = s.revenue
+      if (s.asking_price) document.getElementById('s-pr').value = s.asking_price
+      if (s.years_in_business) document.getElementById('s-yr').value = s.years_in_business
+      if (s.employees) document.getElementById('s-em').value = s.employees
+      if (s.description) document.getElementById('s-ds').value = s.description
+      if (s.strengths) { window.strengths = s.strengths; renderStr() }
+    }
+    setSave('saved')
+  } catch(e) { console.error('Load error:', e) }
+}
+
+// ── BUYERS ────────────────────────────────────────────────────
+window.addBuyer = async () => {
+  const name = document.getElementById('b-nm').value.trim()
+  if (!name || !window.currentUser) return
+  const colors = [['#E8F2FC','#1557A0'],['#EEEDFE','#3C3489'],['#E8F5DF','#2D6A0A'],['#FDF1E0','#7A4500'],['#FAECE7','#712B13']]
+  const [bg, color] = colors[window.buyers.length % colors.length]
+  const initials = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()
+  const buyer = { user_id: window.currentUser.uid, name, buyer_type: document.getElementById('b-tp').value, stage: document.getElementById('b-st').value, initials, bg_color: bg, text_color: color, created_at: new Date().toISOString() }
+  const ref = await addDoc(collection(db, 'buyers'), buyer)
+  window.buyers.push({id: ref.id, ...buyer})
+  document.getElementById('b-nm').value = ''
+  renderBuyers()
+  showToast('Buyer saved to Firebase')
+  document.getElementById('dk-b').textContent = window.buyers.length
+}
+
+window.removeBuyer = async (id) => {
+  await deleteDoc(doc(db, 'buyers', id))
+  window.buyers = window.buyers.filter(b => b.id !== id)
+  renderBuyers()
+  document.getElementById('dk-b').textContent = window.buyers.length
+  showToast('Buyer removed')
+}
+
+function renderBuyers() {
+  const el = document.getElementById('buy-list')
+  const SC = {'Initial contact':{bg:'#F4F3EF',c:'#5C5B55'},'Teaser sent':{bg:'#FDF1E0',c:'#7A4500'},'NDA signed':{bg:'#E8F5DF',c:'#2D6A0A'},'Due diligence':{bg:'#E8F2FC',c:'#1557A0'},'LOI received':{bg:'#EEEDFE',c:'#3C3489'},'Negotiating':{bg:'#FAECE7',c:'#712B13'}}
+  if (!window.buyers.length) { el.innerHTML = '<div style="text-align:center;padding:20px;font-size:12px;color:var(--txt3)">No buyers yet — add one above to track your pipeline.</div>'; return }
+  el.innerHTML = window.buyers.map(b => {
+    const s = SC[b.stage] || SC['Initial contact']
+    return `<div class="buyer-card"><div class="buyer-av" style="background:${b.bg_color};color:${b.text_color}">${b.initials}</div><div><h5>${b.name}</h5><p>${b.buyer_type}</p></div><div class="buyer-stage" style="background:${s.bg};color:${s.c}">${b.stage}</div><button class="buyer-del" onclick="removeBuyer('${b.id}')">✕</button></div>`
+  }).join('')
+}
+</script>
+
+<script>
+// ── GLOBALS ───────────────────────────────────────────────────
+window.checkedItems = new Set()
+window.buyers = []
+window.strengths = []
+window.chatHistory = []
+
+// ── NAV ───────────────────────────────────────────────────────
+const NAV_META = {
+  dash:{title:'Dashboard',sub:'Your sale readiness at a glance'},
+  chk:{title:'Checklist',sub:'Progress saves automatically to Firebase'},
+  val:{title:'Valuation',sub:'Inputs save automatically'},
+  fin:{title:'Financials',sub:'Click any document for AI guidance'},
+  leg:{title:'Legal',sub:'Legal & compliance documents'},
+  ops:{title:'Operations',sub:'Operations & team info'},
+  rsk:{title:'Risk Assessment',sub:'Address these before going to market'},
+  buy:{title:'Buyers Pipeline',sub:'All contacts save to Firebase'},
+  adv:{title:'AI Advisor',sub:'Powered by Claude — ask anything'},
+  sum:{title:'Exec Summary',sub:'All fields save automatically'},
+}
+window.nav = (id) => {
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'))
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'))
+  document.getElementById('sec-'+id).classList.add('active')
+  document.getElementById('n-'+id).classList.add('active')
+  document.getElementById('tt').textContent = NAV_META[id].title
+  document.getElementById('ts').textContent = NAV_META[id].sub
+}
+
+// ── SAVE INDICATOR ────────────────────────────────────────────
+function setSave(s) {
+  const d = document.getElementById('save-dot'), l = document.getElementById('save-lbl')
+  d.className = 'save-dot' + (s==='saving'?' saving':'')
+  l.textContent = s==='saving'?'Saving…':s==='error'?'Save error':'All saved'
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast')
+  t.textContent = msg; t.classList.add('show')
+  setTimeout(()=>t.classList.remove('show'), 2200)
+}
+
+// ── CHECKLIST ─────────────────────────────────────────────────
+const CHECKLISTS = [
+  {cat:'Financials',c:'#1557A0',bg:'#E8F2FC',ic:'ti-report-money',items:['3-year P&L statements','3-year tax returns','Current balance sheet','Monthly cash flow statements','A/R & A/P aging reports','Bank statements (12 months)','Loan & debt schedules']},
+  {cat:'Legal',c:'#2D6A0A',bg:'#E8F5DF',ic:'ti-gavel',items:['Articles of incorporation / LLC','Business licenses & permits','Key customer contracts','Vendor & supplier agreements','Lease agreements','IP / trademark registrations','Litigation history (5 years)']},
+  {cat:'Operations',c:'#7A4500',bg:'#FDF1E0',ic:'ti-settings',items:['Organizational chart','Employee roster & salaries','Standard operating procedures','Equipment & asset list','Supplier dependency analysis','Facilities & lease summary']},
+  {cat:'Sales & HR',c:'#533AB7',bg:'#EEEDFE',ic:'ti-chart-bar',items:['Top 10 customer list','Revenue by product/service','CRM & pipeline data','Employee contracts & non-competes','Benefits summary','Workers comp history']},
+  {cat:'Insurance',c:'#993C1D',bg:'#FAECE7',ic:'ti-shield',items:['General liability policy','Property insurance','Workers compensation','Professional liability / E&O']},
+  {cat:'Other',c:'#5F5E5A',bg:'#F1EFE8',ic:'ti-dots-circle-horizontal',items:['Owner transition plan','Growth opportunities memo','Environmental reports','Competitor landscape overview','Marketing & brand assets']},
+]
+const TOTAL = CHECKLISTS.reduce((s,c)=>s+c.items.length,0)
+
+function buildChecklist() {
+  const grid = document.getElementById('chk-grid')
+  CHECKLISTS.forEach((cat,ci) => {
+    const card = document.createElement('div'); card.className = 'cat-card'
+    card.innerHTML = `<div class="cat-header"><div class="cat-icon" style="background:${cat.bg}"><i class="ti ${cat.ic}" style="font-size:13px;color:${cat.c}" aria-hidden="true"></i></div><span class="cat-name">${cat.cat}</span><span class="cat-count" id="cp-${ci}">0/${cat.items.length}</span></div><div class="cat-bar"><div class="cat-bar-fill" id="mb-${ci}" style="width:0%;background:${cat.c}"></div></div>`
+    cat.items.forEach((item,ii) => {
+      const id = `c${ci}-${ii}`, row = document.createElement('div')
+      row.className = 'chk-row'; row.id = 'r-'+id
+      row.innerHTML = `<input type="checkbox" id="${id}" onchange="tick('${id}',${ci},this)"><label for="${id}">${item}</label>`
+      card.appendChild(row)
+    })
+    grid.appendChild(card)
+  })
+}
+
+window.tick = (id, ci, el) => {
+  if(el.checked) window.checkedItems.add(id); else window.checkedItems.delete(id)
+  document.getElementById('r-'+id).className = 'chk-row'+(el.checked?' done':'')
+  const done = CHECKLISTS[ci].items.filter((_,i)=>window.checkedItems.has(`c${ci}-${i}`)).length
+  document.getElementById('cp-'+ci).textContent = done+'/'+CHECKLISTS[ci].items.length
+  document.getElementById('mb-'+ci).style.width = Math.round(done/CHECKLISTS[ci].items.length*100)+'%'
+  updateProgress(); window.scheduleSave()
+}
+
+function updateProgress() {
+  const done = window.checkedItems.size, pct = Math.round(done/TOTAL*100)
+  document.getElementById('sc-bar').style.width = pct+'%'
+  document.getElementById('sc-pct').textContent = pct+'%'
+  document.getElementById('sc-sub').textContent = done+' of '+TOTAL+' done'
+  document.getElementById('nbg').textContent = pct+'%'
+  document.getElementById('chk-lbl').textContent = done+' of '+TOTAL+' complete · synced to Firebase'
+  document.getElementById('dk-r').textContent = pct+'%'
+  buildReadinessBars()
+}
+
+function buildReadinessBars() {
+  document.getElementById('rb').innerHTML = CHECKLISTS.map((c,ci) => {
+    const d = c.items.filter((_,i)=>window.checkedItems.has(`c${ci}-${i}`)).length
+    return `<div class="rb-row"><div class="rb-label"><span>${c.cat}</span><span class="rb-count">${d}/${c.items.length}</span></div><div class="rb-bg"><div class="rb-fill" style="width:${Math.round(d/c.items.length*100)}%;background:${c.c}"></div></div></div>`
+  }).join('')
+}
+
+// ── VALUATION ─────────────────────────────────────────────────
+const MULTS = {
+  retail:{s:2.2,r:0.45,n:'Retail',note:'Valued on clean books, lease terms, and foot traffic. Buyers discount for inventory risk and e-commerce competition.'},
+  service:{s:2.8,r:0.65,n:'Service',note:'Solid multiples when revenue is recurring and not owner-dependent. Strong SOPs significantly increase value.'},
+  saas:{s:5.0,r:3.00,n:'SaaS/Tech',note:'Premium multiples driven by ARR, churn, and net revenue retention. MRR consistency is the #1 value driver.'},
+  manufacturing:{s:3.2,r:0.55,n:'Manufacturing',note:'Valuations hinge on equipment condition, customer diversity, and margins. Proprietary processes command a premium.'},
+  restaurant:{s:1.8,r:0.38,n:'Restaurant',note:'Lowest multiples due to high failure rates. Strong lease terms and a transferable liquor license improve value.'},
+  healthcare:{s:3.5,r:0.80,n:'Healthcare',note:'Strong multiples when licenses and payer contracts transfer cleanly. Regulatory compliance is critical.'},
+  construction:{s:2.5,r:0.50,n:'Construction',note:'Valued on backlog quality, bonding capacity, and equipment. Licensed crews and subcontractor relationships add value.'},
+  equipment:{s:3.5,r:0.90,n:'Equipment Rental',note:'Trades at 4–6× EBITDA for small to mid-sized businesses, up to 7–8× for larger fleets with recurring contracts. Revenue multiples run 2–2.3× pure rental revenue. Key drivers: fleet utilization, maintenance records, and customer contract diversity.'},
+}
+
+window.calcV = () => {
+  const rev=parseFloat(document.getElementById('v-rev').value)||0
+  const pro=parseFloat(document.getElementById('v-pro').value)||0
+  const add=parseFloat(document.getElementById('v-add').value)||0
+  const m=MULTS[document.getElementById('v-ind').value]||MULTS.service
+  const sde=pro+add, sv=Math.round(sde*m.s), rv=Math.round(rev*m.r), avg=Math.round((sv+rv)/2)
+  const mar=rev>0?Math.round(pro/rev*100):0
+  document.getElementById('dk-v').textContent='$'+avg.toLocaleString()
+  document.getElementById('ind-note').textContent=m.note
+  document.getElementById('vms').innerHTML=`
+    <div class="method-card"><div class="mc-label">SDE multiple</div><div class="mc-value">$${sv.toLocaleString()}</div><div class="mc-sub">SDE: $${sde.toLocaleString()}</div><span class="mc-tag">${m.s}× SDE</span></div>
+    <div class="method-card featured"><div class="mc-label">Estimated range</div><div class="mc-value">$${Math.round(avg*.9).toLocaleString()}–$${Math.round(avg*1.15).toLocaleString()}</div><div class="mc-sub">Midpoint: $${avg.toLocaleString()}</div><span class="mc-tag">Best estimate</span></div>
+    <div class="method-card"><div class="mc-label">Revenue multiple</div><div class="mc-value">$${rv.toLocaleString()}</div><div class="mc-sub">Margin: ${mar}%</div><span class="mc-tag">${m.r}× revenue</span></div>`
+  document.getElementById('v-note').textContent=`${m.n} businesses typically sell for ${m.s}–${(m.s*1.2).toFixed(1)}× SDE. Your SDE of $${sde.toLocaleString()} includes net profit plus your owner add-back. Estimated range: $${Math.round(avg*.85).toLocaleString()} – $${Math.round(avg*1.2).toLocaleString()}. Consult a certified business broker for a formal valuation.`
+}
+
+// ── DOC TILES ─────────────────────────────────────────────────
+function buildDocs(id,docs){
+  document.getElementById(id).innerHTML=docs.map(d=>`
+    <div style="background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:12px;cursor:pointer;transition:border-color .15s;box-shadow:0 1px 3px rgba(0,0,0,.06)" onclick="askAdvisor('What exactly should I include in the ${d.t} document for business due diligence?')" onmouseover="this.style.borderColor='var(--blue2)'" onmouseout="this.style.borderColor='var(--bdr)'">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:${d.bg};display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ${d.ic}" style="font-size:15px;color:${d.c}" aria-hidden="true"></i></div><h4 style="font-size:12px;font-weight:600;color:var(--txt);line-height:1.3">${d.t}</h4></div>
+      <p style="font-size:10px;color:var(--txt3)">${d.d}</p>
+      <div style="font-size:10px;color:var(--blue2);margin-top:7px">Click for AI guidance ↗</div>
+    </div>`).join('')
+}
+
+const F1=[{ic:'ti-report-money',c:'#1557A0',bg:'#E8F2FC',t:'Profit & loss',d:'3-year annual & monthly'},{ic:'ti-receipt-tax',c:'#1557A0',bg:'#E8F2FC',t:'Tax returns',d:'All schedules, 3 years'},{ic:'ti-scale',c:'#1557A0',bg:'#E8F2FC',t:'Balance sheet',d:'Current + history'}]
+const F2=[{ic:'ti-chart-line',c:'#2D6A0A',bg:'#E8F5DF',t:'Cash flow',d:'Monthly, 2 years'},{ic:'ti-file-invoice-dollar',c:'#2D6A0A',bg:'#E8F5DF',t:'A/R aging report',d:'Current snapshot'},{ic:'ti-building-bank',c:'#2D6A0A',bg:'#E8F5DF',t:'Bank statements',d:'12 months'},{ic:'ti-coins',c:'#2D6A0A',bg:'#E8F5DF',t:'Debt schedule',d:'All loans'},{ic:'ti-box',c:'#2D6A0A',bg:'#E8F5DF',t:'Inventory',d:'Current valuation'},{ic:'ti-user-dollar',c:'#2D6A0A',bg:'#E8F5DF',t:'Owner add-backs',d:'Normalized EBITDA'}]
+const L1=[{ic:'ti-certificate',c:'#2D6A0A',bg:'#E8F5DF',t:'Formation documents',d:'Articles, bylaws, OA'},{ic:'ti-id-badge',c:'#2D6A0A',bg:'#E8F5DF',t:'Licenses & permits',d:'All active'},{ic:'ti-trademark',c:'#2D6A0A',bg:'#E8F5DF',t:'IP & trademarks',d:'All owned IP'}]
+const L2=[{ic:'ti-contract',c:'#7A4500',bg:'#FDF1E0',t:'Customer contracts',d:'All material'},{ic:'ti-truck',c:'#7A4500',bg:'#FDF1E0',t:'Vendor contracts',d:'Supplier agreements'},{ic:'ti-home',c:'#7A4500',bg:'#FDF1E0',t:'Lease agreements',d:'All locations'},{ic:'ti-alert-triangle',c:'#7A4500',bg:'#FDF1E0',t:'Litigation history',d:'Past 5 years'},{ic:'ti-writing',c:'#7A4500',bg:'#FDF1E0',t:'Employment agreements',d:'Key staff'},{ic:'ti-shield',c:'#7A4500',bg:'#FDF1E0',t:'Insurance policies',d:'All coverage'}]
+const O1=[{ic:'ti-sitemap',c:'#533AB7',bg:'#EEEDFE',t:'Org chart',d:'All staff & roles'},{ic:'ti-users',c:'#533AB7',bg:'#EEEDFE',t:'Employee roster',d:'Salaries & tenure'},{ic:'ti-book',c:'#533AB7',bg:'#EEEDFE',t:'SOPs & processes',d:'How the business runs'}]
+const O2=[{ic:'ti-devices',c:'#993C1D',bg:'#FAECE7',t:'Equipment & assets',d:'Full list with values'},{ic:'ti-trophy',c:'#993C1D',bg:'#FAECE7',t:'Customer data',d:'Top clients & revenue'},{ic:'ti-package',c:'#993C1D',bg:'#FAECE7',t:'Supplier list',d:'Key vendors & terms'},{ic:'ti-chart-dots',c:'#993C1D',bg:'#FAECE7',t:'Sales / CRM data',d:'Pipeline & history'},{ic:'ti-tool',c:'#993C1D',bg:'#FAECE7',t:'IT systems',d:'Software & subscriptions'},{ic:'ti-photo',c:'#993C1D',bg:'#FAECE7',t:'Brand assets',d:'Logo, photos, web'}]
+
+// ── RISKS ─────────────────────────────────────────────────────
+const RISKS=[
+  {c:'#D93B3B',tg:'badge-red',tt:'High risk',ti:'Owner dependency',ic:'ti-user-x',d:'If you are the rainmaker or primary operator, buyers will discount heavily. Start delegating and document all processes now.',fx:'How do I reduce owner dependency before selling my business?'},
+  {c:'#D93B3B',tg:'badge-red',tt:'High risk',ti:'Customer concentration',ic:'ti-alert-circle',d:'Top 3 customers over 30% of revenue signals existential risk. Diversify or prepare a strong retention narrative.',fx:'How do I handle customer concentration risk in a business sale?'},
+  {c:'#B8660C',tg:'badge-amber',tt:'Medium risk',ti:'Revenue trend',ic:'ti-trending-down',d:'Declining revenue triggers buyer skepticism. Prepare a credible documented explanation and forward-looking plan.',fx:'My revenue declined — how do I explain this to buyers?'},
+  {c:'#B8660C',tg:'badge-amber',tt:'Medium risk',ti:'Lease assignability',ic:'ti-home',d:'A lease that cannot transfer or expires within 2 years is a deal-killer. Negotiate assignment rights now.',fx:'What should I know about lease assignments when selling?'},
+  {c:'#B8660C',tg:'badge-amber',tt:'Medium risk',ti:'Undisclosed liabilities',ic:'ti-receipt-off',d:'Tax liens, unpaid payroll, or hidden debts discovered during due diligence kill deals. Commission a pre-sale audit.',fx:'How do I find hidden liabilities before selling my business?'},
+  {c:'#2E7DD4',tg:'badge-blue',tt:'Manageable',ti:'Key employee retention',ic:'ti-users',d:'Consider retention bonuses tied to close. Have honest conversations with critical staff about the transition.',fx:'How do I keep key employees during a business sale?'},
+  {c:'#2E7DD4',tg:'badge-blue',tt:'Manageable',ti:'Non-compete agreement',ic:'ti-lock',d:'Buyers expect a non-compete (typically 2–5 years). Prepare for this negotiation and consult an attorney.',fx:'What should I know about signing a non-compete when selling?'},
+]
+
+function buildRisks(){
+  document.getElementById('rsk-list').innerHTML=RISKS.map(r=>`
+    <div class="risk-item">
+      <div class="risk-sev" style="background:${r.c}"></div>
+      <i class="ti ${r.ic}" style="font-size:20px;color:${r.c};flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+      <div class="risk-body">
+        <span class="badge ${r.tg}">${r.tt}</span>
+        <h5>${r.ti}</h5><p>${r.d}</p>
+        <button class="btn btn-outline btn-sm" style="margin-top:7px" onclick="askAdvisor('${r.fx}');nav('adv')">Get advice ↗</button>
+      </div>
+    </div>`).join('')
+}
+
+// ── AI ADVISOR ────────────────────────────────────────────────
+const QPS=['What do buyers scrutinize most?','How do I maximize my sale price?','What is SDE and how is it calculated?','Do I need a broker to sell my business?','What is an LOI?','How long does a typical sale take?']
+
+function buildChat(){
+  document.getElementById('qps').innerHTML=QPS.map(q=>`<button class="qp" onclick="window.sendMsg('${q}')">${q}</button>`).join('')
+  addMsg('ai','Welcome to BizSell Assistant! 👋\n\nAll your data — checklist progress, valuation inputs, buyer contacts, and summary fields — saves automatically to Firebase and will be here when you return.\n\nI\'m your AI deal advisor. Ask me anything about preparing for a business sale.')
+}
+
+window.askAdvisor = (q) => { nav('adv'); setTimeout(()=>window.sendMsg(q),100) }
+
+function addMsg(role,text){
+  const w=document.getElementById('chat-msgs'), d=document.createElement('div')
+  d.className='msg '+role
+  d.innerHTML=`<div class="msg-avatar ${role}">${role==='ai'?'AI':'You'}</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`
+  w.appendChild(d); w.scrollTop=w.scrollHeight; return d
+}
+
+window.sendMsg = async (text) => {
+  const t = text || document.getElementById('cin').value.trim()
+  if (!t) return
+  document.getElementById('cin').value=''
+  addMsg('user',t)
+  window.chatHistory.push({role:'user',content:t})
+  const td=addMsg('ai','<span class="spin"></span>Thinking…')
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:'You are a seasoned M&A advisor specializing in small business sales ($500K–$20M). Be warm, practical, and specific. Use short paragraphs. Give actionable steps. 3–5 paragraphs max.',messages:window.chatHistory})})
+    const d=await r.json()
+    const reply=d.content?.map(b=>b.text||'').join('')||'Unable to respond.'
+    td.querySelector('.msg-bubble').innerHTML=reply.replace(/\n/g,'<br>')
+    window.chatHistory.push({role:'assistant',content:reply})
+  }catch(e){td.querySelector('.msg-bubble').textContent='Connection error. Please try again.'}
+}
+
+window.doChat = () => window.sendMsg()
+
+// ── EXEC SUMMARY ──────────────────────────────────────────────
+window.addStr = () => {
+  const i=document.getElementById('s-st')
+  if(!i.value.trim())return
+  window.strengths.push(i.value.trim()); i.value=''
+  renderStr(); window.scheduleSave()
+}
+function renderStr(){
+  document.getElementById('sl').innerHTML=window.strengths.map((s,i)=>`<span class="stag" onclick="window.strengths.splice(${i},1);renderStr();window.scheduleSave()">✓ ${s} ×</span>`).join('')
+}
+
+window.genSum = async () => {
+  const btn=document.getElementById('gen-btn'), out=document.getElementById('sum-out')
+  btn.innerHTML='<span class="spin"></span>Generating…'; btn.disabled=true
+  out.style.display='block'; out.textContent='Drafting your executive summary…'
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`Write a compelling 1-page executive summary / teaser for a business being sold. Keep financials directional.\n\nBusiness: ${document.getElementById('s-nm').value||'the business'}\nIndustry: ${document.getElementById('s-in').value||'unspecified'}\nRevenue: ${document.getElementById('s-rv').value||'undisclosed'}/yr\nAsking price: ${document.getElementById('s-pr').value||'on request'}\nYears: ${document.getElementById('s-yr').value||'several'} · Employees: ${document.getElementById('s-em').value||'multiple'}\nDescription: ${document.getElementById('s-ds').value||''}\nStrengths: ${window.strengths.join(', ')||'not provided'}\n\nUnder 350 words. Professional tone. Use section headers.`}]})})
+    const d=await r.json()
+    out.textContent=d.content?.map(b=>b.text||'').join('')||'Could not generate.'
+  }catch(e){out.textContent='Error generating. Please try again.'}
+  btn.innerHTML='Generate executive summary ↗'; btn.disabled=false
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+buildChecklist(); calcV()
+buildDocs('fg1',F1); buildDocs('fg2',F2)
+buildDocs('lg1',L1); buildDocs('lg2',L2)
+buildDocs('og1',O1); buildDocs('og2',O2)
+buildRisks(); buildChat()
+</script>
+</body>
+</html>
