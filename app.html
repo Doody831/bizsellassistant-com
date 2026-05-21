@@ -671,15 +671,19 @@ window.handleFileUpload = async (e) => {
   showToast('Uploading ' + file.name + '...')
   try {
     const uid = window.currentUser.uid
-    const path = `documents/${uid}/${itemId}/${Date.now()}_${file.name}`
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+    const path = 'documents/' + uid + '/' + itemId + '/' + Date.now() + '_' + safeName
     const storageRef = ref(storage, path)
-    await uploadBytes(storageRef, file)
-    const downloadURL = await getDownloadURL(storageRef)
+    const snapshot = await uploadBytes(storageRef, file)
+    let downloadURL = ''
+    try { downloadURL = await getDownloadURL(snapshot.ref) } catch(urlErr) {
+      // Generate public URL directly
+      downloadURL = 'https://firebasestorage.googleapis.com/v0/b/bizsellassistant.firebasestorage.app/o/' + encodeURIComponent(path) + '?alt=media'
+    }
     const docData = { user_id: uid, checklist_item_id: itemId, file_name: file.name, file_size: file.size, storage_path: path, download_url: downloadURL, created_at: new Date().toISOString() }
     const docRef = await addDoc(collection(db, 'documents'), docData)
     if (!window.userDocs[itemId]) window.userDocs[itemId] = []
     window.userDocs[itemId].push({id: docRef.id, ...docData})
-    // Auto-check the item
     if (!window.checkedItems.has(itemId)) {
       window.checkedItems.add(itemId)
       const el = document.getElementById(itemId)
@@ -688,10 +692,16 @@ window.handleFileUpload = async (e) => {
       window.scheduleSave()
     }
     refreshChecklistDocs()
-    showToast('✅ ' + file.name + ' uploaded!')
+    showToast('✅ ' + file.name + ' uploaded successfully!')
   } catch(err) {
-    showToast('Upload failed: ' + err.message)
-    console.error(err)
+    console.error('Upload error:', err.code, err.message)
+    if (err.code === 'storage/unauthorized') {
+      showToast('Please sign out and sign back in, then try again')
+    } else if (err.code === 'storage/canceled') {
+      showToast('Upload canceled')
+    } else {
+      showToast('Upload failed: ' + (err.message || err.code))
+    }
   }
   e.target.value = ''
 }
