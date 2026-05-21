@@ -483,7 +483,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js'
 import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js'
+// Storage removed - using Firestore for document storage
 
 const firebaseConfig = {
   apiKey: "AIzaSyBu8RgZKHrR3SOhbvFh2p9cCwTCn7ldSJo",
@@ -497,7 +497,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const db = getFirestore(app)
-const storage = getStorage(app, "gs://bizsellassistant.firebasestorage.app")
+// Using Firestore for document storage
 
 // ── AUTH ─────────────────────────────────────────────────────
 window.handleSignIn = async () => {
@@ -652,8 +652,8 @@ function renderDocList(container, itemId, docs) {
       <span class="doc-item-icon">${getFileIcon(doc.file_name)}</span>
       <span class="doc-item-name" title="${doc.file_name}">${doc.file_name}</span>
       <span class="doc-item-size">${formatSize(doc.file_size)}</span>
-      <button class="doc-view-btn" onclick="viewDoc('${doc.download_url}')">View</button>
-      <button class="doc-del-btn" onclick="deleteDoc('${doc.id}','${doc.storage_path}','${itemId}')">✕</button>
+      <button class="doc-view-btn" onclick="viewDoc('${doc.id}','${itemId}')">Download</button>
+      <button class="doc-del-btn" onclick="deleteDoc('${doc.id}','','${itemId}')">✕</button>
     </div>`).join('')
 }
 
@@ -668,19 +668,31 @@ window.handleFileUpload = async (e) => {
   const file = e.target.files[0]
   if (!file || !window.currentUser || !window.currentUploadItemId) return
   const itemId = window.currentUploadItemId
+  // Check file size - limit to 500KB for Firestore storage
+  if (file.size > 500 * 1024) {
+    showToast('File too large - please use files under 500KB')
+    e.target.value = ''
+    return
+  }
   showToast('Uploading ' + file.name + '...')
   try {
     const uid = window.currentUser.uid
-    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-    const path = 'documents/' + uid + '/' + itemId + '/' + Date.now() + '_' + safeName
-    const storageRef = ref(storage, path)
-    const snapshot = await uploadBytes(storageRef, file)
-    let downloadURL = ''
-    try { downloadURL = await getDownloadURL(snapshot.ref) } catch(urlErr) {
-      // Generate public URL directly
-      downloadURL = 'https://firebasestorage.googleapis.com/v0/b/bizsellassistant.firebasestorage.app/o/' + encodeURIComponent(path) + '?alt=media'
+    // Read file as base64
+    const base64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = reject
+      reader.readAsDataURL(file)
+    })
+    const docData = { 
+      user_id: uid, 
+      checklist_item_id: itemId, 
+      file_name: file.name, 
+      file_size: file.size,
+      file_type: file.type,
+      file_data: base64,
+      created_at: new Date().toISOString() 
     }
-    const docData = { user_id: uid, checklist_item_id: itemId, file_name: file.name, file_size: file.size, storage_path: path, download_url: downloadURL, created_at: new Date().toISOString() }
     const docRef = await addDoc(collection(db, 'documents'), docData)
     if (!window.userDocs[itemId]) window.userDocs[itemId] = []
     window.userDocs[itemId].push({id: docRef.id, ...docData})
@@ -692,31 +704,33 @@ window.handleFileUpload = async (e) => {
       window.scheduleSave()
     }
     refreshChecklistDocs()
-    showToast('✅ ' + file.name + ' uploaded successfully!')
+    showToast('✅ ' + file.name + ' uploaded!')
   } catch(err) {
-    console.error('Upload error:', err.code, err.message)
-    if (err.code === 'storage/unauthorized') {
-      showToast('Please sign out and sign back in, then try again')
-    } else if (err.code === 'storage/canceled') {
-      showToast('Upload canceled')
-    } else {
-      showToast('Upload failed: ' + (err.message || err.code))
-    }
+    console.error('Upload error:', err)
+    showToast('Upload failed: ' + err.message)
   }
   e.target.value = ''
 }
 
-window.viewDoc = (url) => { window.open(url, '_blank') }
+window.viewDoc = (docId, itemId) => {
+  const docs = window.userDocs[itemId] || []
+  const doc = docs.find(d => d.id === docId)
+  if (!doc || !doc.file_data) { showToast('File not found'); return }
+  const link = document.createElement('a')
+  link.href = doc.file_data
+  link.download = doc.file_name
+  link.click()
+}
 
 window.deleteDoc = async (docId, storagePath, itemId) => {
   if (!confirm('Delete this document?')) return
   try {
-    await deleteDoc(doc(db, 'documents', docId))
-    try { await deleteObject(ref(storage, storagePath)) } catch(e) {}
+    const { deleteDoc: deleteDocument } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js')
+    await deleteDocument(doc(db, 'documents', docId))
     window.userDocs[itemId] = (window.userDocs[itemId] || []).filter(d => d.id !== docId)
     refreshChecklistDocs()
     showToast('Document deleted')
-  } catch(e) { showToast('Delete failed') }
+  } catch(e) { showToast('Delete failed: ' + e.message) }
 }
 
 function getFileIcon(name) {
