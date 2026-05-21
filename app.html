@@ -4,24 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BizSell Assistant — Business Sale Platform</title>
-<meta name="description" content="The complete due diligence toolkit for small business owners preparing to sell.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.6.0/dist/tabler-icons.min.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0C1A2E;--navy2:#112240;--navy3:#1A3358;--gold:#B8660C;--gold2:#E8820A;--blue:#1557A0;--blue2:#2E7DD4;--blue-lt:#E8F2FC;--green:#2D6A0A;--green-lt:#E8F5DF;--red:#A02828;--red-lt:#FCEAEA;--amber:#7A4500;--amber-lt:#FDF1E0;--bg:#FAFAF8;--bg2:#F4F3EF;--bg3:#ECEAE3;--txt:#1A1A16;--txt2:#5C5B55;--txt3:#9B9A93;--bdr:rgba(0,0,0,0.08);--bdr2:rgba(0,0,0,0.14);--r:8px;--rl:14px}
+:root{--navy:#0C1A2E;--navy2:#112240;--gold:#B8660C;--gold2:#E8820A;--blue:#1557A0;--blue2:#2E7DD4;--blue-lt:#E8F2FC;--green:#2D6A0A;--green-lt:#E8F5DF;--red:#A02828;--red-lt:#FCEAEA;--amber:#7A4500;--amber-lt:#FDF1E0;--bg:#FAFAF8;--bg2:#F4F3EF;--txt:#1A1A16;--txt2:#5C5B55;--txt3:#9B9A93;--bdr:rgba(0,0,0,0.08);--bdr2:rgba(0,0,0,0.14);--r:8px;--rl:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--txt);min-height:100vh}
 h1,h2,h3{font-family:'DM Serif Display',serif}
 button{cursor:pointer;font-family:'DM Sans',sans-serif}
-input,select,textarea{font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 12px;border:1px solid var(--bdr2);border-radius:var(--r);background:white;color:var(--txt);width:100%;outline:none;transition:border-color .15s,box-shadow .15s}
+input,select,textarea{font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 12px;border:1px solid var(--bdr2);border-radius:var(--r);background:white;color:var(--txt);width:100%;outline:none;transition:border-color .15s}
 input:focus,select:focus,textarea:focus{border-color:var(--blue2);box-shadow:0 0 0 3px rgba(46,125,212,.1)}
 textarea{resize:vertical;min-height:60px;line-height:1.5}
 
 /* AUTH */
-.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);background-image:radial-gradient(ellipse at 20% 50%,rgba(24,87,160,.3) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(184,102,12,.2) 0%,transparent 50%)}
+.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);background-image:radial-gradient(ellipse at 20% 50%,rgba(24,87,160,.3) 0%,transparent 60%)}
 .auth-card{background:white;border-radius:20px;padding:40px 44px;width:100%;max-width:420px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
 .auth-logo{display:flex;align-items:center;gap:11px;margin-bottom:28px}
-.auth-logo-mark{width:38px;height:38px;background:var(--gold2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.auth-logo-mark{width:38px;height:38px;background:var(--gold2);border-radius:10px;display:flex;align-items:center;justify-content:center}
 .auth-logo h1{font-size:20px;color:var(--txt)}
 .auth-logo p{font-size:10px;color:var(--txt3);margin-top:1px}
 .auth-card h2{font-size:24px;color:var(--txt);margin-bottom:6px}
@@ -31,13 +30,11 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .auth-error{background:var(--red-lt);color:var(--red);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:14px}
 .auth-success{background:var(--green-lt);color:var(--green);font-size:12px;padding:9px 12px;border-radius:var(--r);margin-bottom:14px}
 .auth-switch{text-align:center;margin-top:18px;font-size:13px;color:var(--txt2)}
-.auth-switch a{color:var(--blue);font-weight:500;cursor:pointer;text-decoration:none}
-.btn-primary{background:var(--navy);color:#fff;border:none;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:600;width:100%;margin-top:4px;transition:background .15s}
-.btn-primary:hover{background:var(--navy2)}
-.btn-gold{background:var(--gold);color:#fff;border:none;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:600;width:100%;margin-top:4px;transition:background .15s}
-.btn-gold:hover{background:var(--amber)}
+.auth-switch a{color:var(--blue);font-weight:500;cursor:pointer}
+.btn-primary{background:var(--navy);color:#fff;border:none;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:600;width:100%;margin-top:4px}
+.btn-gold-full{background:var(--gold);color:#fff;border:none;border-radius:var(--r);padding:12px 20px;font-size:14px;font-weight:600;width:100%;margin-top:4px}
 
-/* APP SHELL */
+/* APP */
 .app-shell{display:flex;min-height:100vh}
 .sidebar{width:220px;flex-shrink:0;background:var(--navy);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
 .sb-brand{padding:20px 16px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -52,15 +49,17 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .sb-score-pct{font-size:20px;font-weight:700;color:var(--gold2);font-family:'DM Mono',monospace}
 .sb-score-sub{font-size:9px;color:rgba(255,255,255,.28);margin-top:1px}
 .sb-section{font-size:9px;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.09em;padding:8px 0 2px 16px}
-.nav-item{display:flex;align-items:center;gap:9px;padding:9px 16px;font-size:12px;color:rgba(255,255,255,.48);border-left:2.5px solid transparent;cursor:pointer;transition:all .15s;user-select:none}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 16px;font-size:12px;color:rgba(255,255,255,.48);border-left:2.5px solid transparent;cursor:pointer;transition:all .15s}
 .nav-item:hover{color:rgba(255,255,255,.82);background:rgba(255,255,255,.05)}
 .nav-item.active{color:white;border-left-color:var(--gold2);background:rgba(255,255,255,.07);font-weight:600}
 .nav-item i{font-size:16px;flex-shrink:0}
 .nav-badge{margin-left:auto;font-size:9px;background:rgba(232,130,10,.18);color:var(--gold2);border-radius:99px;padding:1px 7px;font-weight:600}
-.sb-user{margin-top:auto;padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
+.sb-upgrade{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07)}
+.sb-upgrade button{width:100%;padding:10px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer}
+.sb-user{padding:12px 14px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:9px}
 .sb-avatar{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0}
-.sb-user-name{font-size:11px;font-weight:500;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
-.sb-signout{font-size:11px;color:rgba(255,255,255,.3);background:transparent;border:none;cursor:pointer;padding:2px 4px}
+.sb-user-name{font-size:11px;font-weight:500;color:rgba(255,255,255,.8);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-signout{font-size:11px;color:rgba(255,255,255,.3);background:transparent;border:none;cursor:pointer}
 .sb-signout:hover{color:rgba(255,255,255,.6)}
 .main-content{margin-left:220px;flex:1;display:flex;flex-direction:column;min-height:100vh}
 .topbar{padding:14px 24px 12px;background:var(--bg);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,.06)}
@@ -68,7 +67,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .topbar-sub{font-size:12px;color:var(--txt3);margin-top:2px}
 .topbar-right{display:flex;align-items:center;gap:10px}
 .save-indicator{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt3)}
-.save-dot{width:7px;height:7px;border-radius:50%;background:#56A03A;transition:background .3s}
+.save-dot{width:7px;height:7px;border-radius:50%;background:#56A03A}
 .save-dot.saving{background:var(--gold2);animation:pulse .8s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .page-body{padding:22px 24px 32px;flex:1}
@@ -83,13 +82,13 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .kpi-label{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 .kpi-value{font-size:22px;font-weight:700;color:var(--txt);font-family:'DM Mono',monospace}
 .kpi-sub{font-size:10px;color:var(--txt3);margin-top:3px}
-.kpi.highlight{background:var(--navy);border-color:var(--navy3)}
+.kpi.highlight{background:var(--navy);border-color:#1A3358}
 .kpi.highlight .kpi-label{color:rgba(255,255,255,.38)}
 .kpi.highlight .kpi-value{color:var(--gold2)}
 .kpi.highlight .kpi-sub{color:rgba(255,255,255,.28)}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--r);font-size:13px;font-weight:500;transition:all .15s;border:1px solid transparent;white-space:nowrap;cursor:pointer}
-.btn-navy{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-navy{background:var(--navy);color:#fff}
 .btn-navy:hover{background:var(--navy2)}
 .btn-outline{background:white;color:var(--txt);border-color:var(--bdr2)}
 .btn-outline:hover{background:var(--bg2)}
@@ -99,7 +98,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .strip p{font-size:12px;color:rgba(255,255,255,.62);line-height:1.5}
 .strip strong{color:var(--gold2)}
 
-/* CHECKLIST */
+/* CHECKLIST WITH DOC UPLOAD */
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .cat-card{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:13px 15px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .cat-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
@@ -108,19 +107,31 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .cat-count{font-size:9px;color:var(--txt3);margin-left:auto}
 .cat-bar{background:var(--bg2);border-radius:99px;height:3px;margin-bottom:8px;overflow:hidden}
 .cat-bar-fill{height:3px;border-radius:99px;transition:width .4s}
-.chk-row{display:flex;align-items:flex-start;gap:7px;padding:4px 6px;margin:0 -6px;border-radius:5px;cursor:pointer}
+.chk-row{display:flex;align-items:center;gap:7px;padding:5px 6px;margin:0 -6px;border-radius:5px}
 .chk-row:hover{background:var(--bg2)}
-.chk-row input[type=checkbox]{width:auto;padding:0;margin-top:2px;accent-color:var(--blue);flex-shrink:0}
-.chk-row label{font-size:12px;color:var(--txt);cursor:pointer;line-height:1.4;flex:1}
-.chk-row.done label{text-decoration:line-through;color:var(--txt3)}
+.chk-row input[type=checkbox]{width:auto;padding:0;margin:0;accent-color:var(--blue);flex-shrink:0}
+.chk-label{font-size:12px;color:var(--txt);flex:1;line-height:1.4;cursor:pointer}
+.chk-label.done{text-decoration:line-through;color:var(--txt3)}
+.upload-btn{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid var(--blue2);background:var(--blue-lt);color:var(--blue);cursor:pointer;white-space:nowrap;flex-shrink:0;font-weight:600}
+.upload-btn:hover{background:var(--blue2);color:white}
+.doc-count-badge{font-size:9px;background:var(--green-lt);color:var(--green);border-radius:99px;padding:1px 7px;font-weight:700;flex-shrink:0}
+
+/* DOC LIST */
+.doc-list{margin-left:22px;margin-top:4px;margin-bottom:4px}
+.doc-item{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--bg2);border-radius:8px;margin-bottom:4px;border:1px solid var(--bdr)}
+.doc-item-icon{font-size:16px;flex-shrink:0}
+.doc-item-name{font-size:11px;font-weight:500;color:var(--txt);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.doc-item-size{font-size:10px;color:var(--txt3);flex-shrink:0}
+.doc-view-btn{font-size:10px;padding:2px 8px;border-radius:99px;border:1px solid var(--blue2);background:var(--blue-lt);color:var(--blue);cursor:pointer;font-weight:600;flex-shrink:0}
+.doc-del-btn{font-size:10px;padding:2px 7px;border-radius:99px;border:1px solid #f0c0c0;background:var(--red-lt);color:var(--red);cursor:pointer;font-weight:600;flex-shrink:0}
 
 /* VALUATION */
 .val-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
 .ig{display:flex;flex-direction:column;gap:4px}
 .ig label{font-size:11px;font-weight:500;color:var(--txt2)}
 .val-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
-.method-card{border-radius:var(--rl);padding:16px;border:1px solid var(--bdr);background:white;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.method-card.featured{background:var(--navy);border-color:var(--navy3)}
+.method-card{border-radius:var(--rl);padding:16px;border:1px solid var(--bdr);background:white}
+.method-card.featured{background:var(--navy);border-color:#1A3358}
 .method-card .mc-label{font-size:9px;color:var(--txt3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
 .method-card.featured .mc-label{color:rgba(255,255,255,.38)}
 .method-card .mc-value{font-size:24px;font-weight:700;color:var(--txt);font-family:'DM Mono',monospace}
@@ -133,7 +144,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .val-note-box{background:var(--bg2);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--txt2);line-height:1.7}
 
 /* RISKS */
-.risk-item{display:flex;align-items:flex-start;gap:12px;padding:13px;border:1px solid var(--bdr);border-radius:var(--rl);margin-bottom:9px;background:white;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.risk-item{display:flex;align-items:flex-start;gap:12px;padding:13px;border:1px solid var(--bdr);border-radius:var(--rl);margin-bottom:9px;background:white}
 .risk-sev{width:3px;border-radius:99px;align-self:stretch;flex-shrink:0}
 .risk-body h5{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:3px}
 .risk-body p{font-size:12px;color:var(--txt2);line-height:1.55}
@@ -146,13 +157,12 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .buyer-form{background:var(--bg2);border-radius:var(--rl);padding:15px;margin-bottom:16px;border:1px solid var(--bdr)}
 .buyer-form h4{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:11px}
 .buyer-form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:11px}
-.buyer-card{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:12px 14px;display:flex;align-items:center;gap:11px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.buyer-card{background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:12px 14px;display:flex;align-items:center;gap:11px;margin-bottom:8px}
 .buyer-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
 .buyer-card h5{font-size:13px;font-weight:600;color:var(--txt)}
 .buyer-card p{font-size:11px;color:var(--txt2);margin-top:1px}
 .buyer-stage{margin-left:auto;font-size:10px;padding:3px 9px;border-radius:99px;font-weight:600;white-space:nowrap}
 .buyer-del{margin-left:6px;font-size:11px;padding:3px 8px;border-radius:99px;cursor:pointer;border:1px solid var(--bdr2);background:transparent;color:var(--txt3)}
-.buyer-del:hover{color:var(--red);border-color:#f0c0c0;background:var(--red-lt)}
 
 /* CHAT */
 .chat-wrap{display:flex;flex-direction:column;height:500px}
@@ -166,12 +176,11 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .msg-avatar.ai{background:var(--blue-lt);color:var(--blue)}
 .msg-avatar.user{background:var(--green-lt);color:var(--green)}
 .quick-prompts{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
-.qp{font-size:11px;padding:5px 11px;border-radius:99px;cursor:pointer;border:1px solid var(--bdr);background:white;color:var(--txt2);transition:all .15s}
+.qp{font-size:11px;padding:5px 11px;border-radius:99px;cursor:pointer;border:1px solid var(--bdr);background:white;color:var(--txt2)}
 .qp:hover{border-color:var(--blue2);color:var(--blue);background:var(--blue-lt)}
 .chat-input-row{display:flex;gap:9px;margin-top:10px}
 .chat-input-row input{flex:1}
-.chat-input-row button{padding:0 20px;font-size:13px;font-weight:600;background:var(--navy);color:var(--gold2);border:none;border-radius:var(--r);white-space:nowrap}
-.chat-input-row button:hover{background:var(--navy2)}
+.chat-input-row button{padding:0 20px;font-size:13px;font-weight:600;background:var(--navy);color:var(--gold2);border:none;border-radius:var(--r)}
 
 /* SUMMARY */
 .sum-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
@@ -190,22 +199,21 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 .tl-item h5{font-size:13px;font-weight:600;color:var(--txt)}
 .tl-item p{font-size:12px;color:var(--txt2);margin-top:2px;line-height:1.45}
 .tl-item small{font-size:10px;color:var(--txt3);margin-top:3px;display:block}
-
-/* READINESS BARS */
 .rb-row{margin-bottom:9px}
 .rb-label{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px;color:var(--txt2)}
-.rb-count{color:var(--txt3)}
 .rb-bg{background:var(--bg2);border-radius:99px;height:4px;overflow:hidden}
 .rb-fill{height:4px;border-radius:99px;transition:width .4s}
 
-/* TOAST */
-.toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:var(--gold2);font-size:12px;font-weight:600;padding:9px 16px;border-radius:var(--r);border:1px solid var(--navy3);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-.toast.show{opacity:1;transform:translateY(0)}
+/* UPGRADE MODAL */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
+.modal-box{background:white;border-radius:20px;padding:36px;max-width:420px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;color:var(--txt3);cursor:pointer}
 
-/* SPIN */
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:var(--gold2);font-size:12px;font-weight:600;padding:9px 16px;border-radius:var(--r);opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:9999}
+.toast.show{opacity:1;transform:translateY(0)}
 .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(184,102,12,.25);border-top-color:var(--gold);border-radius:50%;animation:spinning .7s linear infinite;vertical-align:-2px;margin-right:5px}
 @keyframes spinning{to{transform:rotate(360deg)}}
-
 @media(max-width:768px){.sidebar{display:none}.main-content{margin-left:0}.kpis{grid-template-columns:1fr 1fr}.two-col,.cat-grid,.val-inputs,.sum-form,.val-methods{grid-template-columns:1fr}.buyer-form-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -213,14 +221,44 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 
 <div class="toast" id="toast"></div>
 
+<!-- UPGRADE MODAL -->
+<div class="modal-overlay" id="upgrade-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeUpgrade()">✕</button>
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="width:56px;height:56px;background:var(--gold);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+        <i class="ti ti-star" style="font-size:28px;color:white" aria-hidden="true"></i>
+      </div>
+      <h2 style="font-size:22px;color:var(--txt);margin-bottom:8px">Upgrade to Pro</h2>
+      <p style="font-size:13px;color:var(--txt2);line-height:1.6">Get unlimited access to everything BizSell Assistant has to offer.</p>
+    </div>
+    <div style="background:var(--bg2);border-radius:12px;padding:16px;margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <span style="font-size:15px;font-weight:600;color:var(--txt)">Pro Plan</span>
+        <span style="font-size:22px;font-weight:700;color:var(--txt);font-family:'DM Mono',monospace">$49<span style="font-size:13px;font-weight:400;color:var(--txt3)">/mo</span></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)"><span style="color:var(--green);font-size:14px">✓</span>Unlimited AI advisor</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)"><span style="color:var(--green);font-size:14px">✓</span>Document uploads & cloud storage</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)"><span style="color:var(--green);font-size:14px">✓</span>Unlimited buyers pipeline</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)"><span style="color:var(--green);font-size:14px">✓</span>Executive summary generator</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)"><span style="color:var(--green);font-size:14px">✓</span>Priority support</div>
+      </div>
+    </div>
+    <a href="https://buy.stripe.com/dRm3cx0Fo9Mfai8aazgrS00" style="display:block;width:100%;padding:14px;background:var(--gold);color:white;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none">
+      Upgrade to Pro — $49/mo →
+    </a>
+    <p style="font-size:11px;color:var(--txt3);text-align:center;margin-top:12px">Secure payment powered by Stripe · Cancel anytime</p>
+  </div>
+</div>
+
 <!-- AUTH PAGES -->
 <div id="auth-page">
-  <!-- SIGN IN -->
   <div id="signin-page" class="auth-page">
     <div class="auth-card">
       <div class="auth-logo">
         <div class="auth-logo-mark">
-          <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/><rect x="17.8" y="25" width="2.4" height="3.5" rx="1.2" fill="#B8660C"/></svg>
+          <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/></svg>
         </div>
         <div><h1>BizSell Assistant</h1><p>bizsellassistant.com</p></div>
       </div>
@@ -228,29 +266,27 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
       <p class="auth-sub">Sign in to your deal workspace</p>
       <div id="signin-error" class="auth-error" style="display:none"></div>
       <div class="auth-field"><label>Email address</label><input type="email" id="signin-email" placeholder="you@company.com"></div>
-      <div class="auth-field"><label>Password</label><input type="password" id="signin-password" placeholder="••••••••"></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="signin-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')handleSignIn()"></div>
       <button class="btn-primary" onclick="handleSignIn()">Sign in →</button>
       <div class="auth-switch">Don't have an account? <a onclick="showPage('signup')">Create one free</a></div>
     </div>
   </div>
-
-  <!-- SIGN UP -->
   <div id="signup-page" class="auth-page" style="display:none">
     <div class="auth-card">
       <div class="auth-logo">
         <div class="auth-logo-mark">
-          <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/><rect x="17.8" y="25" width="2.4" height="3.5" rx="1.2" fill="#B8660C"/></svg>
+          <svg width="22" height="22" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/></svg>
         </div>
         <div><h1>BizSell Assistant</h1><p>bizsellassistant.com</p></div>
       </div>
       <h2>Create your account</h2>
-      <p class="auth-sub">Start organizing your business sale for free — no credit card required.</p>
+      <p class="auth-sub">Start free — no credit card required.</p>
       <div id="signup-error" class="auth-error" style="display:none"></div>
-      <div id="signup-success" class="auth-success" style="display:none">Account created! Please check your email to verify your account, then sign in.</div>
+      <div id="signup-success" class="auth-success" style="display:none">Account created! Check your email to verify, then sign in.</div>
       <div class="auth-field"><label>Full name</label><input type="text" id="signup-name" placeholder="Jane Smith"></div>
       <div class="auth-field"><label>Email address</label><input type="email" id="signup-email" placeholder="you@company.com"></div>
-      <div class="auth-field"><label>Password (8+ characters)</label><input type="password" id="signup-password" placeholder="••••••••"></div>
-      <button class="btn-gold" onclick="handleSignUp()">Create free account →</button>
+      <div class="auth-field"><label>Password (8+ characters)</label><input type="password" id="signup-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')handleSignUp()"></div>
+      <button class="btn-gold-full" onclick="handleSignUp()">Create free account →</button>
       <div class="auth-switch">Already have an account? <a onclick="showPage('signin')">Sign in</a></div>
     </div>
   </div>
@@ -284,7 +320,8 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
       <div class="nav-item" onclick="nav('buy')" id="n-buy"><i class="ti ti-users" aria-hidden="true"></i>Buyers</div>
       <div class="nav-item" onclick="nav('adv')" id="n-adv"><i class="ti ti-message-circle" aria-hidden="true"></i>AI Advisor</div>
       <div class="nav-item" onclick="nav('sum')" id="n-sum"><i class="ti ti-file-description" aria-hidden="true"></i>Exec Summary</div>
-      <div style="padding:10px 14px;border-top:1px solid rgba(255,255,255,.07)"><button onclick="openUpgrade()" style="width:100%;padding:10px;background:#B8660C;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">⭐ Upgrade to Pro — $49/mo</button></div><div class="sb-user">
+      <div class="sb-upgrade"><button onclick="openUpgrade()">⭐ Upgrade to Pro — $49/mo</button></div>
+      <div class="sb-user">
         <div class="sb-avatar" id="sb-avatar">U</div>
         <span class="sb-user-name" id="sb-username">User</span>
         <button class="sb-signout" onclick="handleSignOut()" title="Sign out"><i class="ti ti-logout" aria-hidden="true"></i></button>
@@ -318,18 +355,18 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
                 <div class="tl-item"><div class="tl-dot active"></div><h5>Preparation & valuation</h5><p>Organize documents, get a valuation, set asking price.</p><small>Months 1–2 · You are here</small></div>
                 <div class="tl-item"><div class="tl-dot"></div><h5>Market & find buyers</h5><p>List with a broker, contact strategic buyers. Sign NDAs.</p><small>Months 2–4</small></div>
                 <div class="tl-item"><div class="tl-dot"></div><h5>Due diligence</h5><p>Buyers review your data room. Answer requests promptly.</p><small>Months 4–6</small></div>
-                <div class="tl-item"><div class="tl-dot"></div><h5>LOI & negotiation</h5><p>Letter of intent, negotiate terms, structure, earn-outs.</p><small>Months 5–7</small></div>
-                <div class="tl-item" style="padding-bottom:0"><div class="tl-dot"></div><h5>Close</h5><p>Purchase agreement, escrow, and ownership transfer.</p><small>Months 7–9</small></div>
+                <div class="tl-item"><div class="tl-dot"></div><h5>LOI & negotiation</h5><p>Letter of intent, negotiate terms, earn-outs.</p><small>Months 5–7</small></div>
+                <div class="tl-item" style="padding-bottom:0"><div class="tl-dot"></div><h5>Close</h5><p>Purchase agreement, escrow, ownership transfer.</p><small>Months 7–9</small></div>
               </div>
             </div>
             <div class="card"><div class="card-hd"><h3>Readiness by category</h3><span>Complete checklist items</span></div><div id="rb"></div></div>
           </div>
         </div>
 
-        <!-- CHECKLIST -->
+        <!-- CHECKLIST WITH DOCUMENT UPLOAD -->
         <div class="sec" id="sec-chk">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
-            <span style="font-size:12px;color:var(--txt2)" id="chk-lbl">0 of 36 complete · synced to Firebase</span>
+            <span style="font-size:12px;color:var(--txt2)" id="chk-lbl">0 of 36 complete · click 📎 to upload documents</span>
             <button class="btn btn-outline btn-sm" onclick="askAdvisor('Which due diligence documents are most important for buyers?')">Ask advisor ↗</button>
           </div>
           <div class="cat-grid" id="chk-grid"></div>
@@ -337,7 +374,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 
         <!-- VALUATION -->
         <div class="sec" id="sec-val">
-          <div class="strip"><i class="ti ti-info-circle" aria-hidden="true"></i><p><strong>Tip:</strong> Add back your owner salary, personal vehicle, and one-time costs to get accurate SDE. All inputs save automatically to Firebase.</p></div>
+          <div class="strip"><i class="ti ti-info-circle" aria-hidden="true"></i><p><strong>Tip:</strong> Add back your owner salary, personal vehicle, and one-time costs to get accurate SDE. All inputs save automatically.</p></div>
           <div class="val-inputs">
             <div class="ig"><label>Annual revenue ($)</label><input type="number" id="v-rev" value="750000" oninput="calcV();scheduleSave()"></div>
             <div class="ig"><label>Annual net profit ($)</label><input type="number" id="v-pro" value="180000" oninput="calcV();scheduleSave()"></div>
@@ -380,14 +417,14 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 
         <!-- RISKS -->
         <div class="sec" id="sec-rsk">
-          <div class="strip"><i class="ti ti-shield-check" aria-hidden="true"></i><p><strong>Pro tip:</strong> Each risk resolved before going to market can add 10–20% to your sale price and speed up closing.</p></div>
+          <div class="strip"><i class="ti ti-shield-check" aria-hidden="true"></i><p><strong>Pro tip:</strong> Each risk resolved before going to market can add 10–20% to your sale price.</p></div>
           <div id="rsk-list"></div>
         </div>
 
         <!-- BUYERS -->
         <div class="sec" id="sec-buy">
           <div class="buyer-form">
-            <h4>Add a buyer — saved to Firebase</h4>
+            <h4>Add a buyer — saved to your database</h4>
             <div class="buyer-form-grid">
               <div class="ig"><label>Name / company</label><input type="text" id="b-nm" placeholder="Acme Partners LLC" onkeydown="if(event.key==='Enter')addBuyer()"></div>
               <div class="ig"><label>Buyer type</label><select id="b-tp"><option>Individual buyer</option><option>Strategic buyer</option><option>Private equity</option><option>Search fund</option></select></div>
@@ -412,7 +449,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
 
         <!-- EXEC SUMMARY -->
         <div class="sec" id="sec-sum">
-          <div class="strip"><i class="ti ti-lock" aria-hidden="true"></i><p><strong>Teaser document:</strong> Share before an NDA. Keep financials directional. All fields save automatically to Firebase.</p></div>
+          <div class="strip"><i class="ti ti-lock" aria-hidden="true"></i><p><strong>Teaser document:</strong> Share before an NDA. Keep financials directional. All fields save automatically.</p></div>
           <div class="sum-form">
             <div class="ig"><label>Business name</label><input type="text" id="s-nm" placeholder="Acme Equipment LLC" oninput="scheduleSave()"></div>
             <div class="ig"><label>Industry</label><input type="text" id="s-in" placeholder="Equipment rental" oninput="scheduleSave()"></div>
@@ -421,7 +458,7 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
             <div class="ig"><label>Years in business</label><input type="text" id="s-yr" placeholder="12" oninput="scheduleSave()"></div>
             <div class="ig"><label>Number of employees</label><input type="text" id="s-em" placeholder="8" oninput="scheduleSave()"></div>
           </div>
-          <div class="ig" style="margin-bottom:11px"><label>What does the business do?</label><textarea id="s-ds" placeholder="A profitable equipment rental company serving contractors across the metro area since 2012…" oninput="scheduleSave()"></textarea></div>
+          <div class="ig" style="margin-bottom:11px"><label>What does the business do?</label><textarea id="s-ds" placeholder="A profitable equipment rental company…" oninput="scheduleSave()"></textarea></div>
           <div class="strengths-wrap">
             <input type="text" id="s-st" placeholder="Add a key selling point and press Enter" onkeydown="if(event.key==='Enter')addStr()">
             <button class="btn btn-outline btn-sm" onclick="addStr()">Add strength</button>
@@ -439,10 +476,14 @@ textarea{resize:vertical;min-height:60px;line-height:1.5}
   </div>
 </div>
 
+<!-- HIDDEN FILE INPUT FOR UPLOADS -->
+<input type="file" id="file-input" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.zip,.txt" onchange="handleFileUpload(event)">
+
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js'
-import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where, orderBy } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, getDocs, deleteDoc, query, where } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBu8RgZKHrR3SOhbvFh2p9cCwTCn7ldSJo",
@@ -450,13 +491,13 @@ const firebaseConfig = {
   projectId: "bizsellassistant",
   storageBucket: "bizsellassistant.firebasestorage.app",
   messagingSenderId: "494182714385",
-  appId: "1:494182714385:web:54e30eca6d764cfe2af5b0",
-  measurementId: "G-7N1G7JVJFJ"
+  appId: "1:494182714385:web:54e30eca6d764cfe2af5b0"
 }
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const db = getFirestore(app)
+const storage = getStorage(app)
 
 // ── AUTH ─────────────────────────────────────────────────────
 window.handleSignIn = async () => {
@@ -478,8 +519,7 @@ window.handleSignUp = async () => {
   const password = document.getElementById('signup-password').value
   const errEl = document.getElementById('signup-error')
   const sucEl = document.getElementById('signup-success')
-  errEl.style.display = 'none'
-  sucEl.style.display = 'none'
+  errEl.style.display = 'none'; sucEl.style.display = 'none'
   if (!name || !email || !password) { errEl.textContent = 'Please fill in all fields'; errEl.style.display = 'block'; return }
   if (password.length < 8) { errEl.textContent = 'Password must be at least 8 characters'; errEl.style.display = 'block'; return }
   try {
@@ -493,16 +533,12 @@ window.handleSignUp = async () => {
   }
 }
 
-window.handleSignOut = async () => {
-  await signOut(auth)
-}
-
+window.handleSignOut = async () => { await signOut(auth) }
 window.showPage = (page) => {
   document.getElementById('signin-page').style.display = page === 'signin' ? 'flex' : 'none'
   document.getElementById('signup-page').style.display = page === 'signup' ? 'flex' : 'none'
 }
 
-// ── AUTH STATE ────────────────────────────────────────────────
 onAuthStateChanged(auth, async (user) => {
   if (user) {
     document.getElementById('auth-page').style.display = 'none'
@@ -521,55 +557,36 @@ onAuthStateChanged(auth, async (user) => {
   }
 })
 
-// ── FIREBASE DB ───────────────────────────────────────────────
+// ── SAVE TO FIREBASE ──────────────────────────────────────────
 let saveTimer = null
 window.scheduleSave = () => {
   setSave('saving')
   clearTimeout(saveTimer)
-  saveTimer = setTimeout(() => persistAll(), 1000)
+  saveTimer = setTimeout(async () => {
+    if (!window.currentUser) return
+    const uid = window.currentUser.uid
+    try {
+      await setDoc(doc(db, 'checklists', uid), { completed_items: [...window.checkedItems], updated_at: new Date().toISOString() })
+      await setDoc(doc(db, 'valuations', uid), { revenue: parseFloat(document.getElementById('v-rev').value)||0, net_profit: parseFloat(document.getElementById('v-pro').value)||0, owner_addback: parseFloat(document.getElementById('v-add').value)||0, industry: document.getElementById('v-ind').value, updated_at: new Date().toISOString() })
+      await setDoc(doc(db, 'summaries', uid), { business_name: document.getElementById('s-nm').value, industry: document.getElementById('s-in').value, revenue: document.getElementById('s-rv').value, asking_price: document.getElementById('s-pr').value, years_in_business: document.getElementById('s-yr').value, employees: document.getElementById('s-em').value, description: document.getElementById('s-ds').value, strengths: window.strengths, updated_at: new Date().toISOString() })
+      setSave('saved')
+      showToast('Progress saved')
+    } catch(e) { setSave('error') }
+  }, 1000)
 }
 
-async function persistAll() {
-  if (!window.currentUser) return
-  const uid = window.currentUser.uid
-  try {
-    await setDoc(doc(db, 'checklists', uid), { completed_items: [...window.checkedItems], updated_at: new Date().toISOString() })
-    await setDoc(doc(db, 'valuations', uid), {
-      revenue: parseFloat(document.getElementById('v-rev').value)||0,
-      net_profit: parseFloat(document.getElementById('v-pro').value)||0,
-      owner_addback: parseFloat(document.getElementById('v-add').value)||0,
-      industry: document.getElementById('v-ind').value,
-      updated_at: new Date().toISOString()
-    })
-    await setDoc(doc(db, 'summaries', uid), {
-      business_name: document.getElementById('s-nm').value,
-      industry: document.getElementById('s-in').value,
-      revenue: document.getElementById('s-rv').value,
-      asking_price: document.getElementById('s-pr').value,
-      years_in_business: document.getElementById('s-yr').value,
-      employees: document.getElementById('s-em').value,
-      description: document.getElementById('s-ds').value,
-      strengths: window.strengths,
-      updated_at: new Date().toISOString()
-    })
-    setSave('saved')
-    showToast('Progress saved to Firebase')
-  } catch(e) { setSave('error'); console.error(e) }
-}
-
+// ── LOAD FROM FIREBASE ────────────────────────────────────────
 async function loadAllData(uid) {
   try {
-    // Load checklist
     const chkDoc = await getDoc(doc(db, 'checklists', uid))
     if (chkDoc.exists() && chkDoc.data().completed_items) {
       window.checkedItems = new Set(chkDoc.data().completed_items)
       chkDoc.data().completed_items.forEach(id => {
         const el = document.getElementById(id)
-        if (el) { el.checked = true; document.getElementById('r-'+id).className = 'chk-row done' }
+        if (el) el.checked = true
       })
       updateProgress()
     }
-    // Load valuation
     const valDoc = await getDoc(doc(db, 'valuations', uid))
     if (valDoc.exists()) {
       const v = valDoc.data()
@@ -579,12 +596,10 @@ async function loadAllData(uid) {
       if (v.industry) document.getElementById('v-ind').value = v.industry
       calcV()
     }
-    // Load buyers
     const buysSnap = await getDocs(query(collection(db, 'buyers'), where('user_id','==',uid)))
     window.buyers = []
     buysSnap.forEach(d => window.buyers.push({id: d.id, ...d.data()}))
     renderBuyers()
-    // Load summary
     const sumDoc = await getDoc(doc(db, 'summaries', uid))
     if (sumDoc.exists()) {
       const s = sumDoc.data()
@@ -597,8 +612,118 @@ async function loadAllData(uid) {
       if (s.description) document.getElementById('s-ds').value = s.description
       if (s.strengths) { window.strengths = s.strengths; renderStr() }
     }
+    // Load documents
+    await loadDocs(uid)
     setSave('saved')
   } catch(e) { console.error('Load error:', e) }
+}
+
+// ── DOCUMENT UPLOAD ───────────────────────────────────────────
+window.userDocs = {}
+
+async function loadDocs(uid) {
+  try {
+    const docsSnap = await getDocs(query(collection(db, 'documents'), where('user_id','==',uid)))
+    window.userDocs = {}
+    docsSnap.forEach(d => {
+      const data = d.data()
+      if (!window.userDocs[data.checklist_item_id]) window.userDocs[data.checklist_item_id] = []
+      window.userDocs[data.checklist_item_id].push({id: d.id, ...data})
+    })
+    refreshChecklistDocs()
+  } catch(e) { console.error('Doc load error:', e) }
+}
+
+function refreshChecklistDocs() {
+  Object.keys(window.userDocs).forEach(itemId => {
+    const badge = document.getElementById('badge-'+itemId)
+    const docList = document.getElementById('docs-'+itemId)
+    const docs = window.userDocs[itemId] || []
+    if (badge) badge.textContent = docs.length > 0 ? docs.length + ' doc' + (docs.length>1?'s':'') : ''
+    if (badge) badge.style.display = docs.length > 0 ? 'inline-block' : 'none'
+    if (docList) renderDocList(docList, itemId, docs)
+  })
+}
+
+function renderDocList(container, itemId, docs) {
+  if (!docs.length) { container.innerHTML = ''; return }
+  container.innerHTML = docs.map(doc => `
+    <div class="doc-item">
+      <span class="doc-item-icon">${getFileIcon(doc.file_name)}</span>
+      <span class="doc-item-name" title="${doc.file_name}">${doc.file_name}</span>
+      <span class="doc-item-size">${formatSize(doc.file_size)}</span>
+      <button class="doc-view-btn" onclick="viewDoc('${doc.download_url}')">View</button>
+      <button class="doc-del-btn" onclick="deleteDoc('${doc.id}','${doc.storage_path}','${itemId}')">✕</button>
+    </div>`).join('')
+}
+
+window.currentUploadItemId = null
+
+window.triggerUpload = (itemId) => {
+  window.currentUploadItemId = itemId
+  document.getElementById('file-input').click()
+}
+
+window.handleFileUpload = async (e) => {
+  const file = e.target.files[0]
+  if (!file || !window.currentUser || !window.currentUploadItemId) return
+  const itemId = window.currentUploadItemId
+  showToast('Uploading ' + file.name + '...')
+  try {
+    const uid = window.currentUser.uid
+    const path = `documents/${uid}/${itemId}/${Date.now()}_${file.name}`
+    const storageRef = ref(storage, path)
+    await uploadBytes(storageRef, file)
+    const downloadURL = await getDownloadURL(storageRef)
+    const docData = { user_id: uid, checklist_item_id: itemId, file_name: file.name, file_size: file.size, storage_path: path, download_url: downloadURL, created_at: new Date().toISOString() }
+    const docRef = await addDoc(collection(db, 'documents'), docData)
+    if (!window.userDocs[itemId]) window.userDocs[itemId] = []
+    window.userDocs[itemId].push({id: docRef.id, ...docData})
+    // Auto-check the item
+    if (!window.checkedItems.has(itemId)) {
+      window.checkedItems.add(itemId)
+      const el = document.getElementById(itemId)
+      if (el) el.checked = true
+      updateProgress()
+      window.scheduleSave()
+    }
+    refreshChecklistDocs()
+    showToast('✅ ' + file.name + ' uploaded!')
+  } catch(err) {
+    showToast('Upload failed: ' + err.message)
+    console.error(err)
+  }
+  e.target.value = ''
+}
+
+window.viewDoc = (url) => { window.open(url, '_blank') }
+
+window.deleteDoc = async (docId, storagePath, itemId) => {
+  if (!confirm('Delete this document?')) return
+  try {
+    await deleteDoc(doc(db, 'documents', docId))
+    try { await deleteObject(ref(storage, storagePath)) } catch(e) {}
+    window.userDocs[itemId] = (window.userDocs[itemId] || []).filter(d => d.id !== docId)
+    refreshChecklistDocs()
+    showToast('Document deleted')
+  } catch(e) { showToast('Delete failed') }
+}
+
+function getFileIcon(name) {
+  const ext = name?.split('.').pop()?.toLowerCase()
+  if (ext === 'pdf') return '📋'
+  if (['xlsx','xls','csv'].includes(ext)) return '📊'
+  if (['doc','docx'].includes(ext)) return '📝'
+  if (['jpg','jpeg','png','gif'].includes(ext)) return '🖼️'
+  if (['zip','rar'].includes(ext)) return '🗜️'
+  return '📄'
+}
+
+function formatSize(bytes) {
+  if (!bytes) return ''
+  if (bytes < 1024) return bytes + ' B'
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB'
+  return (bytes/(1024*1024)).toFixed(1) + ' MB'
 }
 
 // ── BUYERS ────────────────────────────────────────────────────
@@ -609,12 +734,12 @@ window.addBuyer = async () => {
   const [bg, color] = colors[window.buyers.length % colors.length]
   const initials = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()
   const buyer = { user_id: window.currentUser.uid, name, buyer_type: document.getElementById('b-tp').value, stage: document.getElementById('b-st').value, initials, bg_color: bg, text_color: color, created_at: new Date().toISOString() }
-  const ref = await addDoc(collection(db, 'buyers'), buyer)
-  window.buyers.push({id: ref.id, ...buyer})
+  const docRef = await addDoc(collection(db, 'buyers'), buyer)
+  window.buyers.push({id: docRef.id, ...buyer})
   document.getElementById('b-nm').value = ''
   renderBuyers()
-  showToast('Buyer saved to Firebase')
   document.getElementById('dk-b').textContent = window.buyers.length
+  showToast('Buyer saved!')
 }
 
 window.removeBuyer = async (id) => {
@@ -622,13 +747,12 @@ window.removeBuyer = async (id) => {
   window.buyers = window.buyers.filter(b => b.id !== id)
   renderBuyers()
   document.getElementById('dk-b').textContent = window.buyers.length
-  showToast('Buyer removed')
 }
 
 function renderBuyers() {
   const el = document.getElementById('buy-list')
   const SC = {'Initial contact':{bg:'#F4F3EF',c:'#5C5B55'},'Teaser sent':{bg:'#FDF1E0',c:'#7A4500'},'NDA signed':{bg:'#E8F5DF',c:'#2D6A0A'},'Due diligence':{bg:'#E8F2FC',c:'#1557A0'},'LOI received':{bg:'#EEEDFE',c:'#3C3489'},'Negotiating':{bg:'#FAECE7',c:'#712B13'}}
-  if (!window.buyers.length) { el.innerHTML = '<div style="text-align:center;padding:20px;font-size:12px;color:var(--txt3)">No buyers yet — add one above to track your pipeline.</div>'; return }
+  if (!window.buyers.length) { el.innerHTML = '<div style="text-align:center;padding:20px;font-size:12px;color:var(--txt3)">No buyers yet — add one above.</div>'; return }
   el.innerHTML = window.buyers.map(b => {
     const s = SC[b.stage] || SC['Initial contact']
     return `<div class="buyer-card"><div class="buyer-av" style="background:${b.bg_color};color:${b.text_color}">${b.initials}</div><div><h5>${b.name}</h5><p>${b.buyer_type}</p></div><div class="buyer-stage" style="background:${s.bg};color:${s.c}">${b.stage}</div><button class="buyer-del" onclick="removeBuyer('${b.id}')">✕</button></div>`
@@ -642,17 +766,18 @@ window.checkedItems = new Set()
 window.buyers = []
 window.strengths = []
 window.chatHistory = []
+window.userDocs = {}
 
 // ── NAV ───────────────────────────────────────────────────────
 const NAV_META = {
   dash:{title:'Dashboard',sub:'Your sale readiness at a glance'},
-  chk:{title:'Checklist',sub:'Progress saves automatically to Firebase'},
+  chk:{title:'Checklist',sub:'Check items off and click 📎 to upload documents'},
   val:{title:'Valuation',sub:'Inputs save automatically'},
   fin:{title:'Financials',sub:'Click any document for AI guidance'},
   leg:{title:'Legal',sub:'Legal & compliance documents'},
   ops:{title:'Operations',sub:'Operations & team info'},
   rsk:{title:'Risk Assessment',sub:'Address these before going to market'},
-  buy:{title:'Buyers Pipeline',sub:'All contacts save to Firebase'},
+  buy:{title:'Buyers Pipeline',sub:'All contacts save to your database'},
   adv:{title:'AI Advisor',sub:'Powered by Claude — ask anything'},
   sum:{title:'Exec Summary',sub:'All fields save automatically'},
 }
@@ -665,19 +790,21 @@ window.nav = (id) => {
   document.getElementById('ts').textContent = NAV_META[id].sub
 }
 
-// ── SAVE INDICATOR ────────────────────────────────────────────
 function setSave(s) {
   const d = document.getElementById('save-dot'), l = document.getElementById('save-lbl')
   d.className = 'save-dot' + (s==='saving'?' saving':'')
   l.textContent = s==='saving'?'Saving…':s==='error'?'Save error':'All saved'
 }
 
-// ── TOAST ─────────────────────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast')
   t.textContent = msg; t.classList.add('show')
-  setTimeout(()=>t.classList.remove('show'), 2200)
+  setTimeout(()=>t.classList.remove('show'), 2500)
 }
+
+window.openUpgrade = () => { document.getElementById('upgrade-modal').style.display = 'flex' }
+window.closeUpgrade = () => { document.getElementById('upgrade-modal').style.display = 'none' }
+document.getElementById('upgrade-modal').addEventListener('click', function(e) { if(e.target===this) closeUpgrade() })
 
 // ── CHECKLIST ─────────────────────────────────────────────────
 const CHECKLISTS = [
@@ -692,14 +819,23 @@ const TOTAL = CHECKLISTS.reduce((s,c)=>s+c.items.length,0)
 
 function buildChecklist() {
   const grid = document.getElementById('chk-grid')
-  CHECKLISTS.forEach((cat,ci) => {
-    const card = document.createElement('div'); card.className = 'cat-card'
+  CHECKLISTS.forEach((cat, ci) => {
+    const card = document.createElement('div')
+    card.className = 'cat-card'
     card.innerHTML = `<div class="cat-header"><div class="cat-icon" style="background:${cat.bg}"><i class="ti ${cat.ic}" style="font-size:13px;color:${cat.c}" aria-hidden="true"></i></div><span class="cat-name">${cat.cat}</span><span class="cat-count" id="cp-${ci}">0/${cat.items.length}</span></div><div class="cat-bar"><div class="cat-bar-fill" id="mb-${ci}" style="width:0%;background:${cat.c}"></div></div>`
-    cat.items.forEach((item,ii) => {
-      const id = `c${ci}-${ii}`, row = document.createElement('div')
-      row.className = 'chk-row'; row.id = 'r-'+id
-      row.innerHTML = `<input type="checkbox" id="${id}" onchange="tick('${id}',${ci},this)"><label for="${id}">${item}</label>`
-      card.appendChild(row)
+    cat.items.forEach((item, ii) => {
+      const id = `c${ci}-${ii}`
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = `
+        <div class="chk-row">
+          <input type="checkbox" id="${id}" onchange="tick('${id}',${ci},this)">
+          <label class="chk-label" for="${id}" id="lbl-${id}">${item}</label>
+          <span class="doc-count-badge" id="badge-${id}" style="display:none"></span>
+          <button class="upload-btn" onclick="triggerUpload('${id}')" title="Upload document for this item">📎 Upload</button>
+        </div>
+        <div class="doc-list" id="docs-${id}"></div>
+      `
+      card.appendChild(wrapper)
     })
     grid.appendChild(card)
   })
@@ -707,7 +843,8 @@ function buildChecklist() {
 
 window.tick = (id, ci, el) => {
   if(el.checked) window.checkedItems.add(id); else window.checkedItems.delete(id)
-  document.getElementById('r-'+id).className = 'chk-row'+(el.checked?' done':'')
+  const lbl = document.getElementById('lbl-'+id)
+  if(lbl) lbl.className = 'chk-label' + (el.checked?' done':'')
   const done = CHECKLISTS[ci].items.filter((_,i)=>window.checkedItems.has(`c${ci}-${i}`)).length
   document.getElementById('cp-'+ci).textContent = done+'/'+CHECKLISTS[ci].items.length
   document.getElementById('mb-'+ci).style.width = Math.round(done/CHECKLISTS[ci].items.length*100)+'%'
@@ -720,7 +857,7 @@ function updateProgress() {
   document.getElementById('sc-pct').textContent = pct+'%'
   document.getElementById('sc-sub').textContent = done+' of '+TOTAL+' done'
   document.getElementById('nbg').textContent = pct+'%'
-  document.getElementById('chk-lbl').textContent = done+' of '+TOTAL+' complete · synced to Firebase'
+  document.getElementById('chk-lbl').textContent = done+' of '+TOTAL+' complete · click 📎 to upload documents'
   document.getElementById('dk-r').textContent = pct+'%'
   buildReadinessBars()
 }
@@ -728,7 +865,7 @@ function updateProgress() {
 function buildReadinessBars() {
   document.getElementById('rb').innerHTML = CHECKLISTS.map((c,ci) => {
     const d = c.items.filter((_,i)=>window.checkedItems.has(`c${ci}-${i}`)).length
-    return `<div class="rb-row"><div class="rb-label"><span>${c.cat}</span><span class="rb-count">${d}/${c.items.length}</span></div><div class="rb-bg"><div class="rb-fill" style="width:${Math.round(d/c.items.length*100)}%;background:${c.c}"></div></div></div>`
+    return `<div class="rb-row"><div class="rb-label"><span>${c.cat}</span><span style="color:var(--txt3)">${d}/${c.items.length}</span></div><div class="rb-bg"><div class="rb-fill" style="width:${Math.round(d/c.items.length*100)}%;background:${c.c}"></div></div></div>`
   }).join('')
 }
 
@@ -749,8 +886,7 @@ window.calcV = () => {
   const pro=parseFloat(document.getElementById('v-pro').value)||0
   const add=parseFloat(document.getElementById('v-add').value)||0
   const m=MULTS[document.getElementById('v-ind').value]||MULTS.service
-  const sde=pro+add, sv=Math.round(sde*m.s), rv=Math.round(rev*m.r), avg=Math.round((sv+rv)/2)
-  const mar=rev>0?Math.round(pro/rev*100):0
+  const sde=pro+add,sv=Math.round(sde*m.s),rv=Math.round(rev*m.r),avg=Math.round((sv+rv)/2),mar=rev>0?Math.round(pro/rev*100):0
   document.getElementById('dk-v').textContent='$'+avg.toLocaleString()
   document.getElementById('ind-note').textContent=m.note
   document.getElementById('vms').innerHTML=`
@@ -763,7 +899,7 @@ window.calcV = () => {
 // ── DOC TILES ─────────────────────────────────────────────────
 function buildDocs(id,docs){
   document.getElementById(id).innerHTML=docs.map(d=>`
-    <div style="background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:12px;cursor:pointer;transition:border-color .15s;box-shadow:0 1px 3px rgba(0,0,0,.06)" onclick="askAdvisor('What exactly should I include in the ${d.t} document for business due diligence?')" onmouseover="this.style.borderColor='var(--blue2)'" onmouseout="this.style.borderColor='var(--bdr)'">
+    <div style="background:white;border:1px solid var(--bdr);border-radius:var(--rl);padding:12px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.06)" onclick="askAdvisor('What exactly should I include in the ${d.t} document for business due diligence?')" onmouseover="this.style.borderColor='var(--blue2)'" onmouseout="this.style.borderColor='var(--bdr)'">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:30px;height:30px;border-radius:8px;background:${d.bg};display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ${d.ic}" style="font-size:15px;color:${d.c}" aria-hidden="true"></i></div><h4 style="font-size:12px;font-weight:600;color:var(--txt);line-height:1.3">${d.t}</h4></div>
       <p style="font-size:10px;color:var(--txt3)">${d.d}</p>
       <div style="font-size:10px;color:var(--blue2);margin-top:7px">Click for AI guidance ↗</div>
@@ -806,12 +942,12 @@ const QPS=['What do buyers scrutinize most?','How do I maximize my sale price?',
 
 function buildChat(){
   document.getElementById('qps').innerHTML=QPS.map(q=>`<button class="qp" onclick="window.sendMsg('${q}')">${q}</button>`).join('')
-  addMsg('ai','Welcome to BizSell Assistant! 👋\n\nAll your data — checklist progress, valuation inputs, buyer contacts, and summary fields — saves automatically to Firebase and will be here when you return.\n\nI\'m your AI deal advisor. Ask me anything about preparing for a business sale.')
+  addMsg('ai','Welcome to BizSell Assistant! 👋\n\nYour checklist now supports document uploads — click the 📎 Upload button next to any checklist item to attach PDFs, Excel files, Word docs, or images. Files are stored securely in your personal cloud vault.\n\nAll your progress saves automatically. Ask me anything about selling your business!')
 }
 
-window.askAdvisor = (q) => { nav('adv'); setTimeout(()=>window.sendMsg(q),100) }
+window.askAdvisor = (q) => { nav('adv'); setTimeout(()=>window.sendMsg(q), 100) }
 
-function addMsg(role,text){
+function addMsg(role, text){
   const w=document.getElementById('chat-msgs'), d=document.createElement('div')
   d.className='msg '+role
   d.innerHTML=`<div class="msg-avatar ${role}">${role==='ai'?'AI':'You'}</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`
@@ -846,17 +982,16 @@ window.addStr = () => {
 function renderStr(){
   document.getElementById('sl').innerHTML=window.strengths.map((s,i)=>`<span class="stag" onclick="window.strengths.splice(${i},1);renderStr();window.scheduleSave()">✓ ${s} ×</span>`).join('')
 }
-
 window.genSum = async () => {
-  const btn=document.getElementById('gen-btn'), out=document.getElementById('sum-out')
-  btn.innerHTML='<span class="spin"></span>Generating…'; btn.disabled=true
-  out.style.display='block'; out.textContent='Drafting your executive summary…'
+  const btn=document.getElementById('gen-btn'),out=document.getElementById('sum-out')
+  btn.innerHTML='<span class="spin"></span>Generating…';btn.disabled=true
+  out.style.display='block';out.textContent='Drafting your executive summary…'
   try{
     const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`Write a compelling 1-page executive summary / teaser for a business being sold. Keep financials directional.\n\nBusiness: ${document.getElementById('s-nm').value||'the business'}\nIndustry: ${document.getElementById('s-in').value||'unspecified'}\nRevenue: ${document.getElementById('s-rv').value||'undisclosed'}/yr\nAsking price: ${document.getElementById('s-pr').value||'on request'}\nYears: ${document.getElementById('s-yr').value||'several'} · Employees: ${document.getElementById('s-em').value||'multiple'}\nDescription: ${document.getElementById('s-ds').value||''}\nStrengths: ${window.strengths.join(', ')||'not provided'}\n\nUnder 350 words. Professional tone. Use section headers.`}]})})
     const d=await r.json()
     out.textContent=d.content?.map(b=>b.text||'').join('')||'Could not generate.'
   }catch(e){out.textContent='Error generating. Please try again.'}
-  btn.innerHTML='Generate executive summary ↗'; btn.disabled=false
+  btn.innerHTML='Generate executive summary ↗';btn.disabled=false
 }
 
 // ── INIT ──────────────────────────────────────────────────────
@@ -868,47 +1003,3 @@ buildRisks(); buildChat()
 </script>
 </body>
 </html>
-
-<!-- STRIPE UPGRADE MODAL -->
-<div id="upgrade-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center">
-  <div style="background:white;border-radius:20px;padding:36px;max-width:420px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)">
-    <button onclick="closeUpgrade()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;color:#9B9A93;cursor:pointer">✕</button>
-    <div style="text-align:center;margin-bottom:24px">
-      <div style="width:56px;height:56px;background:#B8660C;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
-        <svg width="28" height="28" viewBox="0 0 38 38" fill="none" aria-hidden="true"><rect x="4" y="16" width="30" height="20" rx="4" fill="white" fill-opacity=".95"/><path d="M11 16V12C11 8.69 13.69 6 17 6H21C24.31 6 27 8.69 27 12V16" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="19" cy="25" r="3" fill="#B8660C"/></svg>
-      </div>
-      <h2 style="font-size:22px;color:#1A1A16;margin-bottom:8px;font-family:'DM Serif Display',serif">Upgrade to Pro</h2>
-      <p style="font-size:13px;color:#5C5B55;line-height:1.6">Get unlimited access to everything BizSell Assistant has to offer.</p>
-    </div>
-    <div style="background:#F7F6F2;border-radius:12px;padding:16px;margin-bottom:20px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <span style="font-size:15px;font-weight:600;color:#1A1A16">Pro Plan</span>
-        <span style="font-size:22px;font-weight:700;color:#1A1A16;font-family:'DM Mono',monospace">$49<span style="font-size:13px;font-weight:400;color:#9B9A93">/mo</span></span>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C5B55"><span style="color:#2D6A0A;font-size:14px">✓</span>Unlimited AI advisor</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C5B55"><span style="color:#2D6A0A;font-size:14px">✓</span>Document uploads & storage</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C5B55"><span style="color:#2D6A0A;font-size:14px">✓</span>Unlimited buyers pipeline</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C5B55"><span style="color:#2D6A0A;font-size:14px">✓</span>Executive summary generator</div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5C5B55"><span style="color:#2D6A0A;font-size:14px">✓</span>Priority support</div>
-      </div>
-    </div>
-    <a href="https://buy.stripe.com/dRm3cx0Fo9Mfai8aazgrS00" id="stripe-checkout-btn" style="display:block;width:100%;padding:14px;background:#B8660C;color:white;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;transition:background .15s" onmouseover="this.style.background='#9e5a0a'" onmouseout="this.style.background='#B8660C'">
-      Upgrade to Pro — $49/mo →
-    </a>
-    <p style="font-size:11px;color:#9B9A93;text-align:center;margin-top:12px">Secure payment powered by Stripe · Cancel anytime</p>
-  </div>
-</div>
-
-<script>
-window.openUpgrade = () => {
-  document.getElementById('upgrade-modal').style.display = 'flex'
-}
-window.closeUpgrade = () => {
-  document.getElementById('upgrade-modal').style.display = 'none'
-}
-// Close when clicking outside
-document.getElementById('upgrade-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeUpgrade()
-})
-</script>
