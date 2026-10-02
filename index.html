@@ -15,7 +15,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
 .logo-mark{background:#B8660C;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:38px;height:38px}
 .logo-name{font-size:18px;font-weight:600;color:#fff}
 .logo-sub{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em}
-.nav-links{display:flex;gap:10px}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 .nbtn{font-size:13px;padding:8px 18px;border-radius:8px;cursor:pointer;font-weight:500;border:none;text-decoration:none;display:inline-block;transition:all .15s}
 .n-in{background:transparent;border:1px solid rgba(255,255,255,.18)!important;color:rgba(255,255,255,.75)}
 .n-start{background:#B8660C;color:#fff}
@@ -75,7 +75,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
 .cta-strip p{font-size:13px;color:rgba(255,255,255,.42);margin-top:5px}
 .footer{background:#0C1A2E;padding:26px 48px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .f-copy{font-size:11px;color:rgba(255,255,255,.25)}
-.f-links{display:flex;gap:18px}
+.f-links{display:flex;gap:18px;flex-wrap:wrap}
 .f-link{font-size:11px;color:rgba(255,255,255,.32);text-decoration:none}
 @media(max-width:640px){.nav,.hero,.features,.how,.pricing,.cta-strip,.footer{padding-left:20px;padding-right:20px}}
 </style>
@@ -97,43 +97,43 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
     </div>
   </a>
   <div class="nav-links">
+    <a href="checklist.html" class="nbtn n-in">The checklist</a>
     <a href="https://bizsellassistant.com/app.html" class="nbtn n-in">Sign in</a>
     <a href="https://bizsellassistant.com/app.html" class="nbtn n-start">Start free →</a>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="eyebrow"><span style="width:5px;height:5px;border-radius:50%;background:#E8820A;display:inline-block"></span>The #1 due diligence toolkit for small business owners</div>
+  <div class="eyebrow"><span style="width:5px;height:5px;border-radius:50%;background:#E8820A;display:inline-block"></span>The due diligence toolkit for small business owners</div>
   <h1>Sell your business<br>for <em>maximum value</em></h1>
-  <p>BizSell Assistant organizes every document buyers need, calculates your valuation, tracks your pipeline, and generates professional materials — all in one place.</p>
+  <p>BizSell Assistant organizes every document buyers need, estimates your valuation, and tracks your buyers — all in one place.</p>
   <div class="ctas">
     <a href="https://bizsellassistant.com/app.html" class="btn-gold">Start free today →</a>
     <a href="https://bizsellassistant.com/app.html" class="btn-ghost">Sign in</a>
   </div>
-  <div class="hero-note">No credit card required &nbsp;·&nbsp; Free to start &nbsp;·&nbsp; iOS & Android app available</div>
+  <div class="hero-note">No credit card required &nbsp;·&nbsp; Free to start &nbsp;·&nbsp; Works in any browser</div>
 </div>
 
 <div class="stats">
   <div class="stat"><div class="stat-v">36</div><div class="stat-l">Checklist items</div></div>
   <div class="stat"><div class="stat-v">8</div><div class="stat-l">Industries</div></div>
   <div class="stat"><div class="stat-v">$0</div><div class="stat-l">To get started</div></div>
-  <div class="stat"><div class="stat-v">AI</div><div class="stat-l">Powered by Claude</div></div>
-  <div class="stat"><div class="stat-v">☁️</div><div class="stat-l">Cloud storage</div></div>
+  <div class="stat"><div class="stat-v">96</div><div class="stat-l">Documents in the full checklist</div></div>
+  <div class="stat"><div class="stat-v">☁️</div><div class="stat-l">Saved to your account</div></div>
 </div>
 
 <div class="features">
   <div class="feat-hd">
     <div class="feat-eye">Everything you need</div>
     <h2>Built for business owners,<br>not M&A lawyers</h2>
-    <p>Plain language, practical guidance, real results. On web and mobile.</p>
+    <p>Plain language and practical guidance. Works in any browser, on your computer or phone.</p>
   </div>
   <div class="feat-grid">
-    <div class="feat-card"><div class="feat-icon" style="background:#E8F2FC"><i class="ti ti-list-check" style="font-size:20px;color:#1557A0"></i></div><h3>36-item checklist</h3><p>Every document buyers need across 6 categories. Upload files directly to each item and track your progress.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:#E8F2FC"><i class="ti ti-list-check" style="font-size:20px;color:#1557A0"></i></div><h3>36-item checklist</h3><p>The core documents buyers ask for, across 6 categories. Attach files to each item and track your progress.</p></div>
     <div class="feat-card"><div class="feat-icon" style="background:#FDF3E7"><i class="ti ti-calculator" style="font-size:20px;color:#B8660C"></i></div><h3>Valuation calculator</h3><p>SDE and revenue multiples across 8 industries including Equipment Rental, SaaS, Healthcare, and Construction.</p></div>
-    <div class="feat-card"><div class="feat-icon" style="background:#E8F5DF"><i class="ti ti-cloud-upload" style="font-size:20px;color:#2D6A0A"></i></div><h3>Document storage</h3><p>Upload PDFs, Excel, and Word docs to each checklist item. Stored securely in your personal cloud vault.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:#E8F5DF"><i class="ti ti-cloud-upload" style="font-size:20px;color:#2D6A0A"></i></div><h3>Document storage</h3><p>Attach PDFs, Excel, and Word files of up to 500 KB each to any checklist item. They are saved to your account.</p></div>
     <div class="feat-card"><div class="feat-icon" style="background:#EEEDFE"><i class="ti ti-users" style="font-size:20px;color:#533AB7"></i></div><h3>Buyers pipeline</h3><p>Track every interested buyer from first contact through close. Individual, strategic, and PE buyers.</p></div>
-    <div class="feat-card"><div class="feat-icon" style="background:#E8F2FC"><i class="ti ti-message-circle" style="font-size:20px;color:#1557A0"></i></div><h3>AI deal advisor</h3><p>Ask anything about valuation, negotiation, or deal structure. Powered by Claude AI.</p></div>
-    <div class="feat-card"><div class="feat-icon" style="background:#FDF3E7"><i class="ti ti-file-description" style="font-size:20px;color:#B8660C"></i></div><h3>Executive summary</h3><p>AI generates a professional buyer teaser in seconds — complete with opportunity framing and financial highlights.</p></div>
+    <div class="feat-card"><div class="feat-icon" style="background:#FDF3E7"><i class="ti ti-file-description" style="font-size:20px;color:#B8660C"></i></div><h3>The full 96-document checklist</h3><p>A printable 12-page PDF with every document, red flags to fix first, a data room plan, and a request log. <a href="checklist.html" style="color:#B8660C;font-weight:600">See what is inside →</a></p></div>
   </div>
 </div>
 
@@ -143,49 +143,36 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
   <div class="steps">
     <div class="step"><div class="step-num">01</div><h4>Sign up free</h4><p>Create your account in 30 seconds. Your data syncs securely to the cloud from day one.</p></div>
     <div class="step"><div class="step-num">02</div><h4>Build your vault</h4><p>Work through the 36-item checklist. Upload documents to each item as you complete them.</p></div>
-    <div class="step"><div class="step-num">03</div><h4>Know your value</h4><p>Enter your financials and get an instant valuation with industry-specific multiples.</p></div>
-    <div class="step"><div class="step-num">04</div><h4>Close the deal</h4><p>Track buyers, generate your teaser, and use the AI advisor to negotiate maximum value.</p></div>
+    <div class="step"><div class="step-num">03</div><h4>Know your value</h4><p>Enter your financials and get an estimated value range using industry-specific multiples.</p></div>
+    <div class="step"><div class="step-num">04</div><h4>Close the deal</h4><p>Track every interested buyer from first contact through close.</p></div>
   </div>
 </div>
 
 <div class="pricing">
   <h2>Simple, transparent pricing</h2>
-  <p>Start free. Upgrade when you're ready to go to market.</p>
-  <div class="p-grid">
+  <p>The app is free. The full checklist is a one-time purchase.</p>
+  <div class="p-grid" style="max-width:560px">
     <div class="p-card">
-      <div class="p-tier">Starter</div>
+      <div class="p-tier">The app</div>
       <div class="p-price">$0</div>
-      <div class="p-period">Forever free</div>
+      <div class="p-period">Free</div>
       <div class="p-feat"><i class="ti ti-check"></i>36-item checklist</div>
       <div class="p-feat"><i class="ti ti-check"></i>Valuation calculator</div>
       <div class="p-feat"><i class="ti ti-check"></i>Risk assessment</div>
-      <div class="p-feat"><i class="ti ti-check"></i>AI advisor (10/mo)</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Cloud data sync</div>
+      <div class="p-feat"><i class="ti ti-check"></i>Buyers pipeline</div>
+      <div class="p-feat"><i class="ti ti-check"></i>Saved to your account</div>
       <a href="https://bizsellassistant.com/app.html" class="p-btn p-btn-out">Get started free</a>
     </div>
     <div class="p-card ft">
-      <div style="display:inline-block;font-size:9px;font-weight:600;background:#FDF3E7;color:#B8660C;padding:2px 9px;border-radius:99px;margin-bottom:7px">Most popular</div>
-      <div class="p-tier">Pro</div>
+      <div class="p-tier">The full checklist (PDF)</div>
       <div class="p-price">$49</div>
-      <div class="p-period">per month</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Everything in Starter</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Document uploads & storage</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Buyers pipeline (unlimited)</div>
-      <div class="p-feat"><i class="ti ti-check"></i>AI advisor (unlimited)</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Executive summary generator</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Priority support</div>
-      <a href="https://bizsellassistant.com/app.html" class="p-btn p-btn-gold">Start Pro free →</a>
-    </div>
-    <div class="p-card">
-      <div class="p-tier">Broker</div>
-      <div class="p-price">$199</div>
-      <div class="p-period">per month</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Everything in Pro</div>
-      <div class="p-feat"><i class="ti ti-check"></i>10 client accounts</div>
-      <div class="p-feat"><i class="ti ti-check"></i>White-label branding</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Client dashboard</div>
-      <div class="p-feat"><i class="ti ti-check"></i>Phone support</div>
-      <a href="https://bizsellassistant.com/app.html" class="p-btn p-btn-out">Contact sales</a>
+      <div class="p-period">One-time purchase</div>
+      <div class="p-feat"><i class="ti ti-check"></i>96 documents, 12 categories</div>
+      <div class="p-feat"><i class="ti ti-check"></i>What the buyer is checking, line by line</div>
+      <div class="p-feat"><i class="ti ti-check"></i>Red flags to fix first</div>
+      <div class="p-feat"><i class="ti ti-check"></i>Data room folder plan</div>
+      <div class="p-feat"><i class="ti ti-check"></i>Document request log</div>
+      <a href="checklist.html" class="p-btn p-btn-gold">See the checklist →</a>
     </div>
   </div>
 </div>
@@ -193,7 +180,7 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
 <div class="cta-strip">
   <div>
     <h3>Ready to maximize your exit?</h3>
-    <p>Join business owners preparing for a successful sale at bizsellassistant.com</p>
+    <p>Start organizing your documents today. It is free to begin.</p>
   </div>
   <a href="https://bizsellassistant.com/app.html" class="btn-gold">Start free today →</a>
 </div>
@@ -211,8 +198,9 @@ body{font-family:'DM Sans',sans-serif;background:#0C1A2E}
   </div>
   <div class="f-links">
     <a href="https://bizsellassistant.com" class="f-link">Home</a>
-    <a href="#" class="f-link">Privacy Policy</a>
-    <a href="#" class="f-link">Terms of Service</a>
+    <a href="privacy.html" class="f-link">Privacy Policy</a>
+    <a href="terms.html" class="f-link">Terms of Service</a>
+    <a href="mailto:support@bizsellassistant.com" class="f-link">Contact</a>
     <a href="https://bizsellassistant.com/app.html" class="f-link">Sign in</a>
   </div>
 </div>
